@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/fontawesome.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/js/fontawesome.js"></script>
+    <link rel="stylesheet" href="all.css">
     <title>Especial Bosh</title>
 </head>
 <body>
@@ -41,13 +41,48 @@
             .btn-produto.selecionado > .mascara-marcado{
                 display: block;
             }
-            
-            #topo-escolhas .titulo-escolha{
-                font-size: 2.5rem;
+            #topo-escolhas {
+                clear: both;
+                padding: 10px 20px;
+                margin-bottom: 10px;
+                background: rgb(207,36,44);
+            }
+            .titulo-escolha {
+                background: none;
+                border: 0;
+                outline: none;
+                cursor: pointer;
+                width: 100%;
+                text-align: left;
+                color: white;
+                font-size: 21px;
                 font-weight: bold;
-                display: block;
-                padding-left: 20px;
-                color: #ea3037;
+            }
+            .icone-escolha {
+                margin-right: 15px;
+            }
+            .icone-down {
+                float: right;
+                font-size: 30px;
+                transition: all 0.2s;
+            }
+            .titulo-escolha.open .icone-down{                
+                transform: rotate(180deg);
+            }
+            .wrap-btn-bottom{
+                max-width: 250px;
+            }
+            .btn-proximo-passo{
+                clear: both;
+                padding: 10px 20px;
+                margin-bottom: 10px;
+                background: rgb(207,36,44);
+                outline: none;
+                color: white;
+                border: 0;
+                width: 100%;
+                font-size: 20px;
+                font-weight: bold;
             }
         </style>
         <div class="container">
@@ -62,11 +97,15 @@
             </div>
             <div class="row">
                 <div id="topo-escolhas">
-                    <span class="titulo-escolha">Escolha o 1º Produto</span>
+                    <button class="titulo-escolha btn-prod-1" data-toggle="collapse" data-target="#produtos-1">
+                        <span class="fas fa-shopping-bag icone-escolha"></span>
+                        Escolha o 1º Produto                        
+                        <span class="fas fa-caret-down icone-down"></span>
+                    </button>
                 </div>
             </div>
             <div class="row">
-                <div class="produtos-list">
+                <div class="produtos-list collapse in" id="produtos-1" data-escolha="1">
                     <div class="col-lg-4 col-md-4-col-sm-4-col-xs-12">
                         <button class="btn-produto" data-link="https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/" data-id-produto="212114">
                             <div class="mascara-marcado">
@@ -91,25 +130,98 @@
                             <img src="https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg" style="width: 100%;" />
                         </button>
                     </div>
+
+                    <span>&nbsp;</span>
                 </div>
             </div>
+            <div class="row">
+                <div id="topo-escolhas">
+                    <button class="titulo-escolha btn-prod-2 collapsed" data-toggle="collapse" data-target="#produtos-2">
+                        <span class="fas fa-shopping-bag icone-escolha"></span>
+                        Escolha o 2º Produto                        
+                        <span class="fas fa-caret-down icone-down"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="produtos-list collapse" id="produtos-2" data-escolha="2">
+                    <div class="col-lg-4 col-md-4-col-sm-4-col-xs-12">
+                        <button class="btn-produto" data-link="https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/" data-id-produto="212114">
+                            <div class="mascara-marcado">
+                                <span class="fas fa-check check-select"></span>
+                            </div>
+                            <img src="https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg" style="width: 100%;" />
+                        </button>
+                    </div>
+                    <div class="col-lg-4 col-md-4-col-sm-4-col-xs-12">
+                        <button class="btn-produto" data-link="https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/" data-id-produto="212114">
+                            <div class="mascara-marcado">
+                                <span class="fas fa-check check-select"></span>
+                            </div>
+                            <img src="https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg" style="width: 100%;" />
+                        </button>
+                    </div>
+                    <div class="col-lg-4 col-md-4-col-sm-4-col-xs-12">
+                        <button class="btn-produto" data-link="https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/" data-id-produto="212114">
+                            <div class="mascara-marcado">
+                                <span class="fas fa-check check-select"></span>
+                            </div>
+                            <img src="https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg" style="width: 100%;" />
+                        </button>
+                    </div>
+                    
+                    <span>&nbsp;</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="wrap-btn-bottom">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">                        
+                        <button class="btn-proximo-passo">Prosseguir <span class="fas fa-angle-double-right"></span></button>
+                    </div>                    
+                    <span>&nbsp;</span>
+                </div>                
+            </div>
         </div>
+
         <!--  -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/js/fontawesome.js"></script>
+
         <script>
         var listEscolhas = [];
         $('.btn-produto').on('click',function(){
+            var local = '#'+$(this).closest('.produtos-list').attr('id');
+                      
             if($(this).hasClass('selecionado')){
                 $(this).toggleClass('selecionado');
+                // var idProdutoClick = $(this).data().idProduto;
+                // listEscolhas.map(function(obj,i,array){
+                //     if(obj.idProduto == idProdutoClick){
+                //         array.splice(i);                        
+                //         console.log($(this));
+                //         return false;
+                //     }
+                // });
             }else{
-                if(verificaMarcados()){
-                    $(this).toggleClass('selecionado');
+                if($(local).find('.selecionado').length){
+                    console.log('Ja existe marcado no local');
                 }else{
-                    console.log('Máximo de produtos selecionados');
-                }
+                    $(this).toggleClass('selecionado');
+                    if(local == '#produtos-1'){
+                        $('.btn-prod-1').click();
+                        ($('.btn-prod-2').hasClass('collapsed')) ? $('.btn-prod-2').click() : '';
+                    }
+                    
+                                       
+                }                
             }
-            console.log($(this).data())
+            console.log($(this).data());
         })
+
+        $('.titulo-escolha').on('click',function(){
+            $(this).toggleClass('open');
+        });
 
         var verificaMarcados = function(){
             var contMarcados = 0;
