@@ -80,7 +80,7 @@
             }
             @media only screen and (max-width:769px){
                 .titulo-escolha {
-                    font-size: 18px;
+                    font-size: 15px;
                 }
             }
             .icone-escolha {
@@ -280,7 +280,8 @@
                     $(this).toggleClass('selecionado');
                     if(local == '#produtos-1'){
                         setTimeout(function(){
-                            $('.btn-prod-1').click();
+                            $("html, body").animate({ scrollTop: 0 }, 400);
+                            $('.btn-prod-1').click();                            
                             ($('.btn-prod-2').hasClass('collapsed')) ? $('.btn-prod-2').click() : '';
                         },500);                      
                     }else if(local == '#produtos-2'){
