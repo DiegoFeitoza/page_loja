@@ -26,6 +26,11 @@
                 padding: 20px;
                 border-radius: 50%;
             }
+            @media only screen and (max-width:769px){
+                .check-select{
+                    font-size: 90px;
+                }
+            }
             .mascara-marcado {
                 background-color: rgba(255, 255, 255, 0.6);
                 position: absolute;
@@ -45,7 +50,17 @@
                 clear: both;
                 padding: 10px 20px;
                 margin-bottom: 10px;
+                margin-top: 10px;
                 background: rgb(207,36,44);
+            }
+            @media only screen and (max-width:769px){
+                #topo-escolhas {
+                    clear: both;
+                    padding: 5px 10px;
+                    margin-bottom: 5px;
+                    margin-top: 5px;
+                    background: rgb(207,36,44);
+                }
             }
             .titulo-escolha {
                 background: none;
@@ -58,19 +73,36 @@
                 font-size: 21px;
                 font-weight: bold;
             }
+            @media only screen and (max-width:769px){
+                .titulo-escolha {
+                    font-size: 18px;
+                }
+            }
             .icone-escolha {
                 margin-right: 15px;
+            }
+            @media only screen and (max-width:769px){
+                .icone-escolha {
+                    margin-right: 10px;
+                }
             }
             .icone-down {
                 float: right;
                 font-size: 30px;
                 transition: all 0.2s;
             }
+            @media only screen and (max-width:769px){
+                .icone-down {
+                    font-size: 20px;
+                }
+            }
             .titulo-escolha.open .icone-down{                
                 transform: rotate(180deg);
             }
             .wrap-btn-bottom{
-                max-width: 250px;
+                max-width: 350px;
+                display: block;
+                margin: 15px auto 0;
             }
             .btn-proximo-passo{
                 clear: both;
@@ -83,6 +115,26 @@
                 width: 100%;
                 font-size: 20px;
                 font-weight: bold;
+                cursor: pointer;
+            }
+            @media only screen and (max-width:769px){
+                .btn-proximo-passo {
+                    font-size: 18px;
+                }
+                .icon-proximo-passo{
+                    float: right;
+                    font-size: 20px;
+                }
+                #aviso-promo{
+                    margin-top: 10px;
+                }
+            }
+            .icon-proximo-passo{
+                float: right;
+                font-size: 25px;
+            }
+            #aviso-promo{
+                margin-top: 15px;
             }
         </style>
         <div class="container">
@@ -96,17 +148,19 @@
                 </div>
             </div>
             <div class="row">
-                <div id="topo-escolhas">
-                    <button class="titulo-escolha btn-prod-1" data-toggle="collapse" data-target="#produtos-1">
-                        <span class="fas fa-shopping-bag icone-escolha"></span>
-                        Escolha o 1º Produto                        
-                        <span class="fas fa-caret-down icone-down"></span>
-                    </button>
+                <div class="col-md-12">
+                    <div id="topo-escolhas">
+                        <button class="titulo-escolha btn-prod-1 open" data-toggle="collapse" data-target="#produtos-1">
+                            <span class="fas fa-shopping-bag icone-escolha"></span>
+                            Escolha o 1º Produto                        
+                            <span class="fas fa-caret-down icone-down"></span>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="produtos-list collapse in" id="produtos-1" data-escolha="1">
-                    <div class="col-lg-4 col-md-4-col-sm-4-col-xs-12">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <button class="btn-produto" data-link="https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/" data-id-produto="212114">
                             <div class="mascara-marcado">
                                 <span class="fas fa-check check-select"></span>
@@ -114,7 +168,7 @@
                             <img src="https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg" style="width: 100%;" />
                         </button>
                     </div>
-                    <div class="col-lg-4 col-md-4-col-sm-4-col-xs-12">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <button class="btn-produto" data-link="https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/" data-id-produto="212114">
                             <div class="mascara-marcado">
                                 <span class="fas fa-check check-select"></span>
@@ -122,7 +176,7 @@
                             <img src="https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg" style="width: 100%;" />
                         </button>
                     </div>
-                    <div class="col-lg-4 col-md-4-col-sm-4-col-xs-12">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <button class="btn-produto" data-link="https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/" data-id-produto="212114">
                             <div class="mascara-marcado">
                                 <span class="fas fa-check check-select"></span>
@@ -135,17 +189,19 @@
                 </div>
             </div>
             <div class="row">
-                <div id="topo-escolhas">
-                    <button class="titulo-escolha btn-prod-2 collapsed" data-toggle="collapse" data-target="#produtos-2">
-                        <span class="fas fa-shopping-bag icone-escolha"></span>
-                        Escolha o 2º Produto                        
-                        <span class="fas fa-caret-down icone-down"></span>
-                    </button>
+                <div class="col-md-12">
+                    <div id="topo-escolhas">
+                        <button class="titulo-escolha btn-prod-2 collapsed" data-toggle="collapse" data-target="#produtos-2">
+                            <span class="fas fa-shopping-bag icone-escolha"></span>
+                            Escolha o 2º Produto                        
+                            <span class="fas fa-caret-down icone-down"></span>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="produtos-list collapse" id="produtos-2" data-escolha="2">
-                    <div class="col-lg-4 col-md-4-col-sm-4-col-xs-12">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <button class="btn-produto" data-link="https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/" data-id-produto="212114">
                             <div class="mascara-marcado">
                                 <span class="fas fa-check check-select"></span>
@@ -153,7 +209,7 @@
                             <img src="https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg" style="width: 100%;" />
                         </button>
                     </div>
-                    <div class="col-lg-4 col-md-4-col-sm-4-col-xs-12">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <button class="btn-produto" data-link="https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/" data-id-produto="212114">
                             <div class="mascara-marcado">
                                 <span class="fas fa-check check-select"></span>
@@ -161,7 +217,7 @@
                             <img src="https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg" style="width: 100%;" />
                         </button>
                     </div>
-                    <div class="col-lg-4 col-md-4-col-sm-4-col-xs-12">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <button class="btn-produto" data-link="https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/" data-id-produto="212114">
                             <div class="mascara-marcado">
                                 <span class="fas fa-check check-select"></span>
@@ -174,9 +230,18 @@
                 </div>
             </div>
             <div class="row">
-                <div class="wrap-btn-bottom">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">                        
-                        <button class="btn-proximo-passo">Prosseguir <span class="fas fa-angle-double-right"></span></button>
+                <div class="col-md-12">
+                    <div id="aviso-promo">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis erat massa. Maecenas condimentum pretium congue. In eu nunc euismod, pulvinar dui a, pharetra neque. Vestibulum a sem laoreet purus vehicula blandit nec sit amet odio. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed dictum vitae ipsum id malesuada. Aliquam rutrum cursus tellus eget commodo. Maecenas aliquam, nulla ut aliquam iaculis, sem nulla commodo leo, nec pulvinar justo nibh vitae nisl. Sed tortor purus, gravida ac lectus nec, pulvinar congue sapien. Cras id rhoncus ipsum, id varius est. Quisque id rutrum ipsum.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">                
+                <div class="col-md-12">  
+                    <div class="wrap-btn-bottom">                      
+                        <button class="btn-proximo-passo">Prosseguir <span class="fas fa-angle-double-right icon-proximo-passo"></span></button>
                     </div>                    
                     <span>&nbsp;</span>
                 </div>                
@@ -209,11 +274,15 @@
                 }else{
                     $(this).toggleClass('selecionado');
                     if(local == '#produtos-1'){
-                        $('.btn-prod-1').click();
-                        ($('.btn-prod-2').hasClass('collapsed')) ? $('.btn-prod-2').click() : '';
-                    }
-                    
-                                       
+                        setTimeout(function(){
+                            $('.btn-prod-1').click();
+                            ($('.btn-prod-2').hasClass('collapsed')) ? $('.btn-prod-2').click() : '';
+                        },500);                      
+                    }else if(local == '#produtos-2'){
+                        setTimeout(function(){
+                            $('.btn-prod-2').click();
+                        },500);
+                    }                  
                 }                
             }
             console.log($(this).data());
@@ -221,6 +290,21 @@
 
         $('.titulo-escolha').on('click',function(){
             $(this).toggleClass('open');
+        });
+
+        $('.btn-proximo-passo').on('click',function(){
+            var prd1 = $('#produtos-1').find('.btn-produto.selecionado').data();
+            
+            var prd2 = $('#produtos-2').find('.btn-produto.selecionado').data();
+            
+            if(prd1 != undefined && prd2 != undefined){
+                listEscolhas.push(prd1);
+                listEscolhas.push(prd2);
+                console.log('Produtos para comparar\n',listEscolhas);
+            }else{
+                listEscolhas = [];
+                console.log('Você precisa escolher pelo menos 2 produtos para prosseguir')
+            }
         });
 
         var verificaMarcados = function(){
