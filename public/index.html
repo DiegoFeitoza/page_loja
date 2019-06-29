@@ -20,6 +20,7 @@
                 outline: none;
                 cursor:pointer;
                 margin-bottom: 15px;
+                position: relative;
             }
             .check-select{
                 font-size: 120px;
@@ -51,7 +52,7 @@
             .btn-produto.selecionado > .mascara-marcado{
                 display: block;
             }
-            #topo-escolhas {
+            .topo-escolhas {
                 clear: both;
                 padding: 10px 20px;
                 margin-bottom: 10px;
@@ -59,7 +60,7 @@
                 background: rgb(207,36,44);
             }
             @media only screen and (max-width:769px){
-                #topo-escolhas {
+                .topo-escolhas {
                     clear: both;
                     padding: 5px 10px;
                     margin-bottom: 5px;
@@ -141,8 +142,55 @@
             #aviso-promo{
                 margin-top: 15px;
             }
+
+            .header-selecionados {
+                clear: both;
+                padding: 10px 20px;
+                text-align: center;
+                margin-bottom: 10px;
+                background: rgb(207,36,44);
+            }
+            .header-selecionados span {
+                color: white;
+                font-size: 15px;
+                font-weight: bold;
+            }
+            #selecionados {
+                display: none;
+                float: right;
+                position: fixed;
+                right: -180px;
+                width: 180px;
+                z-index: 1;
+                background: white;
+                transition: all 0.3s;
+            }
+            .produto-1-selecionado img,.produto-2-selecionado img{
+                width: 90%;
+                display: block;
+                margin: 0 auto;
+            }
+            .produto-1-selecionado img{
+                margin-bottom: 15px;
+            }
         </style>
         <div class="container">
+            <div id="selecionados">
+                <div class="header-selecionados">
+                    <span>
+                        Produtos Selecionados
+                    </span>
+                </div>
+                <div class="body-selecionados">
+                    <div class="produto-1-selecionado">
+                    </div>
+                    <div class="produto-2-selecionado">
+                    </div>
+                </div>
+                <div class="wrap-btn-esconder-selecionados">
+
+                </div>
+            </div>
             <div class="row" style="padding-bottom: 40px">
                 <div class="header-pg">
                     <div class="col-lg-6 col-lg-offset-3 col-md-1 col-md-offset-5" style="margin-top: 70px; margin-bottom: 50px;">
@@ -154,82 +202,34 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div id="topo-escolhas">
+                    <div class="topo-escolhas">
                         <button class="titulo-escolha btn-prod-1 open" data-toggle="collapse" data-target="#produtos-1">
-                            <span class="fas fa-shopping-bag icone-escolha"></span>
+
                             Escolha o 1º Produto                        
-                            <span class="fas fa-caret-down icone-down"></span>
+
                         </button>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="produtos-list collapse in" id="produtos-1" data-escolha="1">
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <button class="btn-produto" data-link="https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/" data-id-produto="212114">
-                            <div class="mascara-marcado">
-                                <span class="fas fa-check check-select"></span>
-                            </div>
-                            <img src="https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg" style="width: 100%;" />
-                        </button>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <button class="btn-produto" data-link="https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/" data-id-produto="212114">
-                            <div class="mascara-marcado">
-                                <span class="fas fa-check check-select"></span>
-                            </div>
-                            <img src="https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg" style="width: 100%;" />
-                        </button>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <button class="btn-produto" data-link="https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/" data-id-produto="212114">
-                            <div class="mascara-marcado">
-                                <span class="fas fa-check check-select"></span>
-                            </div>
-                            <img src="https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg" style="width: 100%;" />
-                        </button>
-                    </div>
+                    
 
                     <span>&nbsp;</span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div id="topo-escolhas">
+                    <div class="topo-escolhas">
                         <button class="titulo-escolha btn-prod-2 collapsed" data-toggle="collapse" data-target="#produtos-2">
-                            <span class="fas fa-shopping-bag icone-escolha"></span>
                             Escolha o 2º Produto                        
-                            <span class="fas fa-caret-down icone-down"></span>
                         </button>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="produtos-list collapse" id="produtos-2" data-escolha="2">
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <button class="btn-produto" data-link="https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/" data-id-produto="212114">
-                            <div class="mascara-marcado">
-                                <span class="fas fa-check check-select"></span>
-                            </div>
-                            <img src="https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg" style="width: 100%;" />
-                        </button>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <button class="btn-produto" data-link="https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/" data-id-produto="212114">
-                            <div class="mascara-marcado">
-                                <span class="fas fa-check check-select"></span>
-                            </div>
-                            <img src="https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg" style="width: 100%;" />
-                        </button>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <button class="btn-produto" data-link="https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/" data-id-produto="212114">
-                            <div class="mascara-marcado">
-                                <span class="fas fa-check check-select"></span>
-                            </div>
-                            <img src="https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg" style="width: 100%;" />
-                        </button>
-                    </div>
+                    
                     
                     <span>&nbsp;</span>
                 </div>
@@ -246,12 +246,23 @@
             <div class="row">                
                 <div class="col-md-12">  
                     <div class="wrap-btn-bottom">                      
-                        <button class="btn-proximo-passo">Prosseguir <span class="fas fa-angle-double-right icon-proximo-passo"></span></button>
+                        <button class="btn-proximo-passo">Prosseguir </button>
                     </div>                    
                     <span>&nbsp;</span>
                 </div>                
             </div>
         </div>
+
+        <script id="corpo-produto-btn" type="text/html">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <button class="btn-produto" data-link="{LINK_PRODUTO}" data-id-produto="{ID_PRODUTO}">
+                    <div class="mascara-marcado">
+
+                    </div>
+                    <img src="{IMAGEM_PRODUTO}" style="width: 100%;" />
+                </button>
+            </div>
+        </script>
 
         <!--  -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -259,28 +270,71 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/js/fontawesome.js"></script>
 
         <script>
+        var corpoBtnPrd = $('#corpo-produto-btn').clone().html();
         var listEscolhas = [];
+        var listPrd1 = [
+            {
+                idPrd: 212114,
+                linkPrd: "https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/",
+                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg"
+            },
+            {
+                idPrd: 212114,
+                linkPrd: "https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/",
+                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg"
+            },
+            {
+                idPrd: 212114,
+                linkPrd: "https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/",
+                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg"
+            }
+        ];
+        var listPrd2 = [
+            {
+                idPrd: 212114,
+                linkPrd: "https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/",
+                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg"
+            },
+            {
+                idPrd: 212114,
+                linkPrd: "https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/",
+                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg"
+            },
+            {
+                idPrd: 212114,
+                linkPrd: "https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212114/produto/",
+                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg"
+            }
+        ];
+
+        var montaPrds = function(lista,idLocal){
+            lista.map(function(obj){
+                var linha = corpoBtnPrd;
+                linha = linha.replace(/{LINK_PRODUTO}/g,obj.linkPrd)
+                            .replace(/{ID_PRODUTO}/g,obj.idPrd)
+                            .replace(/{IMAGEM_PRODUTO}/g,obj.imagemPrd);
+
+                $(idLocal).prepend(linha);
+            });
+        };
+        montaPrds(listPrd1,"#produtos-1");
+        montaPrds(listPrd2,"#produtos-2");
         $('.btn-produto').on('click',function(){
             var local = '#'+$(this).closest('.produtos-list').attr('id');
                       
             if($(this).hasClass('selecionado')){
                 $(this).toggleClass('selecionado');
-                // var idProdutoClick = $(this).data().idProduto;
-                // listEscolhas.map(function(obj,i,array){
-                //     if(obj.idProduto == idProdutoClick){
-                //         array.splice(i);                        
-                //         console.log($(this));
-                //         return false;
-                //     }
-                // });
+                limpaSelecionado(local);
             }else{
                 if($(local).find('.selecionado').length){
                     console.log('Ja existe marcado no local');
                 }else{
                     $(this).toggleClass('selecionado');
+                    adcSelecionado(local,$(this).find('img').attr('src'));
+                    $('#selecionados').show('fast');
+                    $('#selecionados').css({'right':'0'});
                     if(local == '#produtos-1'){
                         setTimeout(function(){
-                            $("html, body").animate({ scrollTop: 0 }, 400);
                             $('.btn-prod-1').click();                            
                             ($('.btn-prod-2').hasClass('collapsed')) ? $('.btn-prod-2').click() : '';
                         },500);                      
@@ -327,6 +381,24 @@
                 return false;
             }
             console.log(contMarcados);
+        };
+        var limpaSelecionado = function(local){
+            if(local == '#produtos-1'){                
+                $('#selecionados').find('.produto-1-selecionado').text('');
+            }else if(local == '#produtos-2'){
+                $('#selecionados').find('.produto-2-selecionado').text('');
+            }
+            if($('#selecionados').find('.produto-1-selecionado').html() == '' && $('#selecionados').find('.produto-2-selecionado').html() == ''){
+                $('#selecionados').css({'right':'-180px'});
+                $('#selecionados').hide('fast');
+            }
+        };
+        var adcSelecionado = function(local,imagem){
+            if(local == '#produtos-1'){                
+                $('#selecionados').find('.produto-1-selecionado').text('').append('<img src="'+imagem+'" style="width: 100%;" />');
+            }else if(local == '#produtos-2'){
+                $('#selecionados').find('.produto-2-selecionado').text('').append('<img src="'+imagem+'" style="width: 100%;" />');
+            }
         };
         </script>
     </section>
