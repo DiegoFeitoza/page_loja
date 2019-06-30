@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/fontawesome.css">
-    <link rel="stylesheet" href="all.css">
-    <title>Especial Bosh</title>
-</head>
-<body>
-    <section id="promo-bosh">
+<section id="promo-bosh">
         <style>
             .btn-produto{
                 border:0;
@@ -452,11 +439,6 @@
             </div>
         </script>
 
-        <!--  -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/js/fontawesome.js"></script>
-
         <script>
         var corpoBtnPrd = $('#corpo-produto-btn').clone().html();
         var corpoModalPrds = $('#corpo-modal-produtos').clone().html();
@@ -547,19 +529,7 @@
                 });
             });
         };
-        var montaPrdsDev = function(lista){
-            lista.map(function(obj){
-                var linha = corpoBtnPrd;
-                linha = linha.replace(/{LINK_PRODUTO}/g,obj.linkPrd)
-                            .replace(/{ESGOTADO}/g,'')
-                            .replace(/{ID_PRODUTO}/g,obj.idPrd)
-                            .replace(/{IMAGEM_PRODUTO}/g,obj.imagemPrd);
-
-                $('#produtos-1').prepend(linha);
-                $('#produtos-2').prepend(linha);
-            });
-        };
-        montaPrdsDev(listPrd);       
+        montaPrds(listPrd);       
         
         $(document).on('click','.btn-produto',function(){
             var local = '#'+$(this).closest('.produtos-list').attr('id');        
@@ -572,7 +542,7 @@
                     console.log('Ja existe marcado no local');
                 }else{
                     $(this).toggleClass('selecionado');                    
-                    verificaSelecionados();           
+                    verificaSelecionados();        
                     adcSelecionado(local,$(this).find('img').attr('src'));
                     $('#selecionados').show('fast');
                     $('#selecionados').css({'right':'0'});
@@ -614,14 +584,13 @@
             }
         });
 
-        $(document).on('click','.btn-proximo-passo-modal',function(){  
-            listEscolhas = [];          
+        $(document).on('click','.btn-proximo-passo-modal',function(){            
             var prd1 = $('#produtos-1').find('.btn-produto.selecionado').data();            
             var prd2 = $('#produtos-2').find('.btn-produto.selecionado').data();
 
             if(prd1 != undefined && prd2 != undefined){                
                 listEscolhas.push(prd1);
-                listEscolhas.push(prd2);
+                listEscolhas.push(prd2);                
             }
         });
 
@@ -633,5 +602,3 @@
         });
         </script>
     </section>
-</body>
-</html>
