@@ -1,398 +1,466 @@
 <section id="promo-bosh">
-        <style>
-            .btn-produto{
-                border:0;
-                background:transparent;
-                border-radius: 0;
-                outline: none;
-                cursor:pointer;
-                margin-bottom: 15px;
-                position: relative;
+    <style>
+        .btn-produto {
+            border: 0;
+            background: transparent;
+            border-radius: 0;
+            outline: none;
+            cursor: pointer;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .btn-produto img {
+            width: 100%;
+        }
+
+        button[disabled] {
+            cursor: not-allowed;
+        }
+
+        .check-select {
+            font-size: 120px;
+            position: absolute;
+            left: 25%;
+            top: 25%;
+            color: rgb(255, 255, 255);
+            background-color: green;
+            padding: 20px;
+            border-radius: 50%;
+        }
+
+        @media only screen and (max-width:769px) {
+            .check-select {
+                font-size: 90px;
             }
-            .btn-produto img{
-                width: 100%;
-            }
-            button[disabled]{
-                cursor:not-allowed;
-            }
-            .check-select{
-                font-size: 120px;
-                position: absolute;
-                left: 25%;
-                top: 25%;
-                color: rgb(255,255,255);
-                background-color: green;
-                padding: 20px;
-                border-radius: 50%;
-            }
-            @media only screen and (max-width:769px){
-                .check-select{
-                    font-size: 90px;
-                }
-            }
-            .mascara-marcado {
-                background-color: rgba(255, 255, 255, 0.6);
-                position: absolute;
-                display: block;
-                width: 100%;
-                height: 100%;
-                left: 0;
-                top: 0;
-                z-index: 5;
-                text-align: center;
-                display: none;
-            }
-            .mascara-esgotado{
-                background-color: rgba(0, 0, 0, 0.5);
-                color: white;
-                position: absolute;
-                display: block;
-                width: 100%;
-                height: 100%;
-                left: 0;
-                top: 0;
-                z-index: 5;
-                text-align: center;
-                display: none;
-            }
-            .mascara-esgotado .mask-esgotado{
-                color: #fff;
-                position: relative;
-                top: 4px;
-                left: 5px;
-                font-size: 16px;
-                float: left;
-            }
-            .mascara-esgotado::before{
-                content: " ";
-                background-image: linear-gradient(134deg,rgba(215,45,44,1)50%,rgba(215,45,44,0) 50%);
-                width: 40px;
-                height: 40px;
-                position: absolute;
-                left: 0px;
-            }
-            .titulo-esgotado {
-                font-weight: bold;
-                padding: 10px;
-                text-align: center;
-                margin-top: 45%;
-                display: block;
-                position: relative;
-                background-color: rgb(207,36,44);
-                font-size: medium;
-            }
-            .btn-produto.prd-esgotado{
-                cursor:not-allowed;
-            }
-            .btn-produto.prd-esgotado > .mascara-esgotado{                
-                display: block;
-            }
-            .btn-produto.selecionado > .mascara-marcado{
-                display: block;
-            }
+        }
+
+        .mascara-marcado {
+            background-color: rgba(255, 255, 255, 0.6);
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            z-index: 5;
+            text-align: center;
+            display: none;
+        }
+
+        .mascara-esgotado {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            z-index: 5;
+            text-align: center;
+            display: none;
+        }
+
+        .mascara-esgotado .mask-esgotado {
+            color: #fff;
+            position: relative;
+            top: 4px;
+            left: 5px;
+            font-size: 16px;
+            float: left;
+        }
+
+        .mascara-esgotado::before {
+            content: " ";
+            background-image: linear-gradient(134deg, rgba(215, 45, 44, 1)50%, rgba(215, 45, 44, 0) 50%);
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 0px;
+        }
+
+        .titulo-esgotado {
+            font-weight: bold;
+            padding: 10px;
+            text-align: center;
+            margin-top: 45%;
+            display: block;
+            position: relative;
+            background-color: rgb(207, 36, 44);
+            font-size: medium;
+        }
+
+        .btn-produto.prd-esgotado {
+            cursor: not-allowed;
+        }
+
+        .btn-produto.prd-esgotado>.mascara-esgotado {
+            display: block;
+        }
+
+        .btn-produto.selecionado>.mascara-marcado {
+            display: block;
+        }
+
+        .topo-escolhas {
+            clear: both;
+            padding: 10px 20px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            background: rgb(207, 36, 44);
+        }
+
+        @media only screen and (max-width:769px) {
             .topo-escolhas {
                 clear: both;
-                padding: 10px 20px;
-                margin-bottom: 10px;
-                margin-top: 10px;
-                background: rgb(207,36,44);
-            }
-            @media only screen and (max-width:769px){
-                .topo-escolhas {
-                    clear: both;
-                    padding: 5px 10px;
-                    margin-bottom: 5px;
-                    margin-top: 5px;
-                    background: rgb(207,36,44);
-                }
-            }
-            .titulo-escolha {
-                background: none;
-                border: 0;
-                outline: none;
-                cursor: pointer;
-                width: 100%;
-                text-align: left;
-                color: white;
-                font-size: 21px;
-                font-weight: bold;
-            }
-            @media only screen and (max-width:769px){
-                .titulo-escolha {
-                    font-size: 15px;
-                }
-            }
-            .icone-escolha {
-                margin-right: 15px;
-            }
-            @media only screen and (max-width:769px){
-                .icone-escolha {
-                    margin-right: 10px;
-                }
-            }
-            .icone-down {
-                float: right;
-                font-size: 30px;
-                transition: all 0.2s;
-            }
-            @media only screen and (max-width:769px){
-                .icone-down {
-                    font-size: 20px;
-                }
-            }
-            .titulo-escolha.open .icone-down{                
-                transform: rotate(180deg);
-            }
-            .wrap-btn-bottom{
-                max-width: 350px;
-                display: block;
-                margin: 15px auto 0;
-            }
-            .btn-proximo-passo{
-                clear: both;
-                padding: 10px 20px;
-                margin-bottom: 10px;
-                background: rgb(207,36,44);
-                outline: none;
-                color: white;
-                border: 0;
-                width: 100%;
-                font-size: 20px;
-                font-weight: bold;
-                cursor: pointer;
-            }
-            @media only screen and (max-width:769px){
-                .btn-proximo-passo {
-                    font-size: 18px;
-                }
-                .icon-proximo-passo{
-                    float: right;
-                    font-size: 20px;
-                }
-                #aviso-promo{
-                    margin-top: 10px;
-                }
-            }
-            .icon-proximo-passo{
-                float: right;
-                font-size: 25px;
-            }
-            #aviso-promo{
-                margin-top: 15px;
-            }
-
-            .header-selecionados {
-                clear: both;
-                padding: 10px 20px;
-                text-align: center;
-                margin-bottom: 10px;
-                background: rgb(207,36,44);
-            }
-            .header-selecionados span {
-                color: white;
-                font-size: 15px;
-                font-weight: bold;
-            }
-            #selecionados {
-                display: none;
-                float: right;
-                position: fixed;
-                right: -180px;
-                width: 180px;
-                z-index: 1;
-                background: white;
-                transition: all 0.3s;
-            }
-            .produto-1-selecionado img,.produto-2-selecionado img{
-                width: 90%;
-                display: block;
-                margin: 0 auto;
-            }
-            .produto-1-selecionado img{
-                margin-bottom: 15px;
-            }
-
-            /* Modal */
-            #modal-selecionados {
-                display:none;
-                position: fixed;
-                z-index: 10;
-                background: rgba(0,0,0,0.5);
-                width: 100%;
-                height: 100%;
-            }
-            .wrap-modal {
-                max-width: 650px;
-                background: white;
-                display: block;
-                margin: 0 auto;
-                margin-top: 5%;
-                position: relative;
-            }
-
-            @media only screen and (max-width: 1025px){
-                .wrap-modal{
-                    margin-top: 150px;
-                }
-            }
-            @media only screen and (max-width: 769px){
-                .wrap-modal{
-                    margin-top: 200px;
-                }
-            }
-            @media only screen and (max-width: 420px){
-                .wrap-modal{
-                    margin: 140px 10px 0;
-                }
-            }
-            .header-modal-selecionados {
-                background: rgb(207,36,44);
-                color: white;
-                text-align: center;
-                padding: 15px;
-                font-size: large;
-                font-weight: bold;
+                padding: 5px 10px;
                 margin-bottom: 5px;
-                position: relative;
+                margin-top: 5px;
+                background: rgb(207, 36, 44);
             }
-            .close-modal-escolhidos {
-                position: absolute;
-                right: 15px;
-                top: 15px;
-                font-size: larger;
-                cursor: pointer;
+        }
+
+        .titulo-escolha {
+            background: none;
+            border: 0;
+            outline: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            color: white;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        @media only screen and (max-width:769px) {
+            .titulo-escolha {
+                font-size: 15px;
             }
-            .close-modal-escolhidos:hover{
-                opacity: 0.5;
+        }
+
+        .icone-escolha {
+            margin-right: 15px;
+        }
+
+        @media only screen and (max-width:769px) {
+            .icone-escolha {
+                margin-right: 10px;
             }
-            .body-modal-selecionados {
-                position: relative;
-                display: block;
-                clear: both;
-            }
-            .aviso-body-modal {
-                padding: 10px;
-                font-size: medium;
-                text-align: center;
-            }
-            .aviso-bold {
-                font-weight: bold;
-            }
-            .produto1, .produto2 {
-                width: 50%;
-                position: relative;
-                float: left;
-                padding: 15px;
-            }
-            .produto1 img, .produto2 img{
-                width: 100%;
-            }
-            .footer-modal-selecionados {
-                position: relative;
-                display: block;
-                clear: both;
-                text-align: center;
-                padding: 5px;
-            }
-            .btn-proximo-passo-modal {
-                padding: 10px 20px;
-                background: rgb(207,36,44);
-                outline: none;
-                color: white;
-                border: 0;
-                width: 100%;
+        }
+
+        .icone-down {
+            float: right;
+            font-size: 30px;
+            transition: all 0.2s;
+        }
+
+        @media only screen and (max-width:769px) {
+            .icone-down {
                 font-size: 20px;
-                font-weight: bold;
-                cursor: pointer;
             }
-        </style>        
-        <div class="container">            
-            <div id="selecionados" class="hidden-md hidden-sm hidden-xs">
-                <div class="header-selecionados">
-                    <span>
-                        Produtos Selecionados
-                    </span>
-                </div>
-                <div class="body-selecionados">
-                    <div class="produto-1-selecionado">
-                    </div>
-                    <div class="produto-2-selecionado">
-                    </div>
-                </div>
-                <div class="wrap-btn-esconder-selecionados">
+        }
 
-                </div>
-            </div>
-            <div class="row" style="padding-bottom: 40px">
-                <div class="header-pg">
-                    <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3" style="margin-top: 70px; margin-bottom: 50px;">
-                        <img src="https://s1.lojistaonline.com.br/lojas/2033/img/titulo_marcenaria4.png" style="width: 100%" /></div>
-                    <div class="col-lg-8 col-lg-offset-2 col-xs-10 col-xs-offset-1">
-                        <span style="font-size: large;">✔ Ofertas v&aacute;lidas at&eacute; 30/04/19!</span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="topo-escolhas">
-                        <button class="titulo-escolha btn-prod-1 open" data-toggle="collapse" data-target="#produtos-1">
+        .titulo-escolha.open .icone-down {
+            transform: rotate(180deg);
+        }
 
-                            Escolha o 1º Produto                        
+        .wrap-btn-bottom {
+            max-width: 350px;
+            display: block;
+            margin: 15px auto 0;
+        }
 
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="produtos-list collapse in" id="produtos-1" data-escolha="1">
-                    
+        .btn-proximo-passo {
+            clear: both;
+            padding: 10px 20px;
+            margin-bottom: 10px;
+            background: rgb(207, 36, 44);
+            outline: none;
+            color: white;
+            border: 0;
+            width: 100%;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-                    <span>&nbsp;</span>
+        @media only screen and (max-width:769px) {
+            .btn-proximo-passo {
+                font-size: 18px;
+            }
+
+            .icon-proximo-passo {
+                float: right;
+                font-size: 20px;
+            }
+
+            #aviso-promo {
+                margin-top: 10px;
+            }
+        }
+
+        .icon-proximo-passo {
+            float: right;
+            font-size: 25px;
+        }
+
+        #aviso-promo {
+            margin-top: 15px;
+        }
+
+        .header-selecionados {
+            clear: both;
+            padding: 10px 20px;
+            text-align: center;
+            margin-bottom: 10px;
+            background: rgb(207, 36, 44);
+        }
+
+        .header-selecionados span {
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        #selecionados {
+            display: none;
+            float: right;
+            position: fixed;
+            right: -180px;
+            width: 180px;
+            z-index: 1;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .produto-1-selecionado img,
+        .produto-2-selecionado img {
+            width: 90%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .produto-1-selecionado img {
+            margin-bottom: 15px;
+        }
+
+        .aviso-selecionados {
+            width: 100%;
+            text-align: center;
+            display: block;
+            position: relative;
+            font-size: medium;
+            font-weight: bold;
+            padding-top: 15px;
+            margin-bottom: 15px;
+            color: rgb(207, 36, 44);
+        }
+
+        /* Modal */
+        #modal-selecionados {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            height: 100%;
+        }
+
+        .wrap-modal {
+            max-width: 650px;
+            background: white;
+            display: block;
+            margin: 0 auto;
+            margin-top: 5%;
+            position: relative;
+        }
+
+        @media only screen and (max-width: 1025px) {
+            .wrap-modal {
+                margin-top: 150px;
+            }
+        }
+
+        @media only screen and (max-width: 769px) {
+            .wrap-modal {
+                margin-top: 200px;
+            }
+        }
+
+        @media only screen and (max-width: 420px) {
+            .wrap-modal {
+                margin: 140px 10px 0;
+            }
+        }
+
+        .header-modal-selecionados {
+            background: rgb(207, 36, 44);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: large;
+            font-weight: bold;
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .close-modal-escolhidos {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: larger;
+            cursor: pointer;
+        }
+
+        .close-modal-escolhidos:hover {
+            opacity: 0.5;
+        }
+
+        .body-modal-selecionados {
+            position: relative;
+            display: block;
+            clear: both;
+        }
+
+        .aviso-body-modal {
+            padding: 10px;
+            font-size: medium;
+            text-align: center;
+        }
+
+        .aviso-bold {
+            font-weight: bold;
+        }
+
+        .produto1,
+        .produto2 {
+            width: 50%;
+            position: relative;
+            float: left;
+            padding: 15px;
+        }
+
+        .produto1 img,
+        .produto2 img {
+            width: 100%;
+        }
+
+        .footer-modal-selecionados {
+            position: relative;
+            display: block;
+            clear: both;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .btn-proximo-passo-modal {
+            padding: 10px 20px;
+            background: rgb(207, 36, 44);
+            outline: none;
+            color: white;
+            border: 0;
+            width: 100%;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+    <div class="container">
+        <div id="selecionados" class="hidden-md hidden-sm hidden-xs">
+            <div class="header-selecionados">
+                <span>
+                    Produtos Selecionados
+                </span>
+            </div>
+            <div class="body-selecionados">
+                <div class="produto-1-selecionado">
+                </div>
+                <div class="produto-2-selecionado">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="topo-escolhas">
-                        <button class="titulo-escolha btn-prod-2 collapsed" data-toggle="collapse" data-target="#produtos-2">
-                            Escolha o 2º Produto                        
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="produtos-list collapse" id="produtos-2" data-escolha="2">
-                    
-                    
-                    <span>&nbsp;</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="aviso-promo">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis erat massa. Maecenas condimentum pretium congue. In eu nunc euismod, pulvinar dui a, pharetra neque. Vestibulum a sem laoreet purus vehicula blandit nec sit amet odio. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed dictum vitae ipsum id malesuada. Aliquam rutrum cursus tellus eget commodo. Maecenas aliquam, nulla ut aliquam iaculis, sem nulla commodo leo, nec pulvinar justo nibh vitae nisl. Sed tortor purus, gravida ac lectus nec, pulvinar congue sapien. Cras id rhoncus ipsum, id varius est. Quisque id rutrum ipsum.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="hidden-lg">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="row">                
-                <div class="col-md-12">  
-                    <div class="wrap-btn-bottom">                      
-                        <button class="btn-proximo-passo" disabled>Prosseguir </button>
-                    </div>                    
-                    <span>&nbsp;</span>
-                </div>                
+            <div class="wrap-btn-esconder-selecionados">
+
             </div>
         </div>
+        <div class="row" style="padding-bottom: 40px">
+            <div class="header-pg">
+                <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3"
+                    style="margin-top: 70px; margin-bottom: 50px;">
+                    <img src="https://s1.lojistaonline.com.br/lojas/2033/img/titulo_marcenaria4.png"
+                        style="width: 100%" /></div>
+                <div class="col-lg-8 col-lg-offset-2 col-xs-10 col-xs-offset-1">
+                    <span style="font-size: large;">✔ Ofertas v&aacute;lidas at&eacute; 30/04/19!</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="topo-escolhas">
+                    <button class="titulo-escolha btn-prod-1 open" data-toggle="collapse" data-target="#produtos-1">
 
-        <script id="corpo-produto-btn" type="text/html">
+                        Escolha o 1º Produto
+
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="produtos-list collapse in" id="produtos-1" data-escolha="1">
+
+
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="topo-escolhas">
+                    <button class="titulo-escolha btn-prod-2 collapsed">
+                        Escolha o 2º Produto
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="produtos-list collapse" id="produtos-2" data-escolha="2">
+
+
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="aviso-promo">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis erat massa. Maecenas
+                        condimentum pretium congue. In eu nunc euismod, pulvinar dui a, pharetra neque. Vestibulum a sem
+                        laoreet purus vehicula blandit nec sit amet odio. Pellentesque habitant morbi tristique senectus
+                        et netus et malesuada fames ac turpis egestas. Sed dictum vitae ipsum id malesuada. Aliquam
+                        rutrum cursus tellus eget commodo. Maecenas aliquam, nulla ut aliquam iaculis, sem nulla commodo
+                        leo, nec pulvinar justo nibh vitae nisl. Sed tortor purus, gravida ac lectus nec, pulvinar
+                        congue sapien. Cras id rhoncus ipsum, id varius est. Quisque id rutrum ipsum.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="hidden-lg">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wrap-btn-bottom">
+                    <button class="btn-proximo-passo" disabled>Prosseguir </button>
+                </div>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+    </div>
+
+    <script id="corpo-produto-btn" type="text/html">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <button class="btn-produto {ESGOTADO}" data-link="{LINK_PRODUTO}" data-id-produto="{ID_PRODUTO}">
                     <div class="mascara-marcado">
@@ -407,7 +475,7 @@
             </div>
         </script>
 
-        <script id="corpo-modal-produtos" type="text/html">
+    <script id="corpo-modal-produtos" type="text/html">
             <div id="modal-selecionados">
                 <div class="wrap-modal">
                     <div class="header-modal-selecionados">
@@ -439,7 +507,7 @@
             </div>
         </script>
 
-        <script>
+    <script>
         var corpoBtnPrd = $('#corpo-produto-btn').clone().html();
         var corpoModalPrds = $('#corpo-modal-produtos').clone().html();
         var listEscolhas = [];
@@ -476,19 +544,19 @@
             }
         ];
 
-        var verificaSelecionados = function(){
-            var prd1 = $('#produtos-1').find('.btn-produto.selecionado').data();            
+        var verificaSelecionados = function () {
+            var prd1 = $('#produtos-1').find('.btn-produto.selecionado').data();
             var prd2 = $('#produtos-2').find('.btn-produto.selecionado').data();
 
-            if(prd1 != undefined && prd2 != undefined){
-                $('.btn-proximo-passo').prop('disabled',false);
-            }else{                
-                $('.btn-proximo-passo').prop('disabled',true);
+            if (prd1 != undefined && prd2 != undefined) {
+                $('.btn-proximo-passo').prop('disabled', false);
+            } else {
+                $('.btn-proximo-passo').prop('disabled', true);
             }
         };
-        var verificarEstoque = function(link){
-            return new Promise(function(resolve,reject){
-                $.get(link,function(res){
+        var verificarEstoque = function (link) {
+            return new Promise(function (resolve, reject) {
+                $.get(link, function (res) {
                     console.log('Verificou estoque!');
                     var resp1 = res.indexOf('bxBtnComprar') != -1;
                     var resp2 = res.indexOf('btnAddCarrinho') != -1;
@@ -496,111 +564,118 @@
                 });
             });
         };
-        var limpaSelecionado = function(local){
-            if(local == '#produtos-1'){                
+        var limpaSelecionado = function (local) {
+            if (local == '#produtos-1') {
+                $('#selecionados').find('.produto-1-selecionado').text('').append('<span class="aviso-selecionados">Escolha o primeiro produto</span>');
+            } else if (local == '#produtos-2') {
+                $('#selecionados').find('.produto-2-selecionado').text('').append('<span class="aviso-selecionados">Escolha o segundo produto</span>');
+            }
+            if (($('#selecionados').find('.produto-1-selecionado').html() == '' || $('#selecionados').find('.produto-1-selecionado').html() == '<span class="aviso-selecionados">Escolha o primeiro produto</span>') && ($('#selecionados').find('.produto-2-selecionado').html() == '' || $('#selecionados').find('.produto-2-selecionado').html() == '<span class="aviso-selecionados">Escolha o segundo produto</span>')) {
+                $('#selecionados').css({ 'right': '-180px' });
+                $('#selecionados').hide('fast');
                 $('#selecionados').find('.produto-1-selecionado').text('');
-            }else if(local == '#produtos-2'){
                 $('#selecionados').find('.produto-2-selecionado').text('');
             }
-            if($('#selecionados').find('.produto-1-selecionado').html() == '' && $('#selecionados').find('.produto-2-selecionado').html() == ''){
-                $('#selecionados').css({'right':'-180px'});
-                $('#selecionados').hide('fast');
+        };
+        var adcSelecionado = function (local, imagem) {
+            if (local == '#produtos-1') {
+                $('#selecionados').find('.produto-1-selecionado').text('').append('<img src="' + imagem + '" style="width: 100%;" />');
+                $('#selecionados').find('.produto-2-selecionado').append('<span class="aviso-selecionados">Escolha o segundo produto</span>');
+            } else if (local == '#produtos-2') {
+                $('#selecionados').find('.produto-2-selecionado').text('').append('<img src="' + imagem + '" style="width: 100%;" />');
             }
         };
-        var adcSelecionado = function(local,imagem){
-            if(local == '#produtos-1'){                
-                $('#selecionados').find('.produto-1-selecionado').text('').append('<img src="'+imagem+'" style="width: 100%;" />');
-            }else if(local == '#produtos-2'){
-                $('#selecionados').find('.produto-2-selecionado').text('').append('<img src="'+imagem+'" style="width: 100%;" />');
-            }
-        };
-        var montaPrds = function(lista){
-            lista.map(function(obj){
-                verificarEstoque(obj.linkPrd).then(function(res){              
+        var montaPrds = function (lista) {
+            lista.map(function (obj) {
+                verificarEstoque(obj.linkPrd).then(function (res) {
                     var linha = corpoBtnPrd;
                     var temEstoque = res;
-                    linha = linha.replace(/{LINK_PRODUTO}/g,obj.linkPrd)
-                                .replace(/{ESGOTADO}/g,(temEstoque) ? '' : 'prd-esgotado')
-                                .replace(/{ID_PRODUTO}/g,obj.idPrd)
-                                .replace(/{IMAGEM_PRODUTO}/g,obj.imagemPrd);
+                    linha = linha.replace(/{LINK_PRODUTO}/g, obj.linkPrd)
+                        .replace(/{ESGOTADO}/g, (temEstoque) ? '' : 'prd-esgotado')
+                        .replace(/{ID_PRODUTO}/g, obj.idPrd)
+                        .replace(/{IMAGEM_PRODUTO}/g, obj.imagemPrd);
 
                     $('#produtos-1').prepend(linha);
                     $('#produtos-2').prepend(linha);
                 });
             });
         };
-        montaPrds(listPrd);       
-        
-        $(document).on('click','.btn-produto',function(){
-            var local = '#'+$(this).closest('.produtos-list').attr('id');        
-            if($(this).hasClass('selecionado')){
+        montaPrds(listPrd);
+
+        $(document).on('click', '.btn-produto', function () {
+            var local = '#' + $(this).closest('.produtos-list').attr('id');
+            if ($(this).hasClass('selecionado')) {
                 $(this).toggleClass('selecionado');
                 limpaSelecionado(local);
                 verificaSelecionados();
-            }else if(!$(this).hasClass('prd-esgotado')){
-                if($(local).find('.selecionado').length){
+            } else if (!$(this).hasClass('prd-esgotado')) {
+                if ($(local).find('.selecionado').length) {
                     console.log('Ja existe marcado no local');
-                }else{
-                    $(this).toggleClass('selecionado');                    
-                    verificaSelecionados();        
-                    adcSelecionado(local,$(this).find('img').attr('src'));
+                } else {
+                    $(this).toggleClass('selecionado');
+                    verificaSelecionados();
+                    adcSelecionado(local, $(this).find('img').attr('src'));
                     $('#selecionados').show('fast');
-                    $('#selecionados').css({'right':'0'});
-                    if(local == '#produtos-1'){
-                        setTimeout(function(){
-                            $('.btn-prod-1').click();                            
+                    $('#selecionados').css({ 'right': '0' });
+                    if (local == '#produtos-1') {
+                        setTimeout(function () {
+                            $('.btn-prod-2').attr({
+                                'data-toggle': 'collapse',
+                                'data-target': '#produtos-2'
+                            });
+                            $('.btn-prod-1').click();
                             ($('.btn-prod-2').hasClass('collapsed')) ? $('.btn-prod-2').click() : '';
-                        },500);                      
-                    }else if(local == '#produtos-2'){
-                        setTimeout(function(){
+                        }, 500);
+                    } else if (local == '#produtos-2') {
+                        setTimeout(function () {
                             $('.btn-prod-2').click();
-                        },500);
-                    }                  
-                }                
+                        }, 500);
+                    }
+                }
             }
         })
 
-        $('.titulo-escolha').on('click',function(){
+        $('.titulo-escolha').on('click', function () {
             $(this).toggleClass('open');
         });
 
-        $('.btn-proximo-passo').on('click',function(){
-            var prd1 = $('#produtos-1').find('.btn-produto.selecionado').data();            
+        $('.btn-proximo-passo').on('click', function () {
+            var prd1 = $('#produtos-1').find('.btn-produto.selecionado').data();
             var prd2 = $('#produtos-2').find('.btn-produto.selecionado').data();
-            
-            if(prd1 != undefined && prd2 != undefined){
+
+            if (prd1 != undefined && prd2 != undefined) {
                 var modalConfirmarProdutos = corpoModalPrds;
                 var imgPrd1 = $('#produtos-1').find('.btn-produto.selecionado').find('img').attr('src');
                 var imgPrd2 = $('#produtos-2').find('.btn-produto.selecionado').find('img').attr('src');
-                modalConfirmarProdutos = modalConfirmarProdutos.replace(/{IMG_PRD_SELECIONADO_1}/g,imgPrd1)
-                                                                .replace(/{IMG_PRD_SELECIONADO_2}/g,imgPrd2);
+                modalConfirmarProdutos = modalConfirmarProdutos.replace(/{IMG_PRD_SELECIONADO_1}/g, imgPrd1)
+                    .replace(/{IMG_PRD_SELECIONADO_2}/g, imgPrd2);
                 $('body').prepend(modalConfirmarProdutos);
 
-                setTimeout(function(){
+                setTimeout(function () {
                     $('#modal-selecionados').fadeIn('fast');
-                },500);
-            }else{
+                }, 500);
+            } else {
                 listEscolhas = [];
             }
         });
 
-        $(document).on('click','.btn-proximo-passo-modal',function(){            
-            var prd1 = $('#produtos-1').find('.btn-produto.selecionado').data();            
+        $(document).on('click', '.btn-proximo-passo-modal', function () {
+            var prd1 = $('#produtos-1').find('.btn-produto.selecionado').data();
             var prd2 = $('#produtos-2').find('.btn-produto.selecionado').data();
 
-            if(prd1 != undefined && prd2 != undefined){                
+            if (prd1 != undefined && prd2 != undefined) {
                 listEscolhas.push(prd1);
-                listEscolhas.push(prd2); 
-                
+                listEscolhas.push(prd2);
+
                 // adcCarrinho(listEscolhas).then(function(res){console.log(res)});
             }
         });
 
-        $(document).on('click','.close-modal-escolhidos',function(){
+        $(document).on('click', '.close-modal-escolhidos', function () {
             $('#modal-selecionados').fadeOut('fast');
-            setTimeout(function(){
+            setTimeout(function () {
                 $('body').find('#modal-selecionados').remove();
-            },500);
+            }, 500);
         });
-        </script>
-    </section>
+    </script>
+</section>
