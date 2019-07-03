@@ -1,505 +1,606 @@
 <section id="promo-bosh">
-    <style>
-        .btn-produto {
-            border: 0;
-            background: transparent;
-            border-radius: 0;
-            outline: none;
-            cursor: pointer;
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        .btn-produto img {
-            width: 100%;
-        }
-
-        button[disabled] {
-            cursor: not-allowed;
-        }
-
-        .check-select {
-            font-size: 120px;
-            position: absolute;
-            left: 25%;
-            top: 25%;
-            color: rgb(255, 255, 255);
-            background-color: green;
-            padding: 20px;
-            border-radius: 50%;
-        }
-
-        @media only screen and (max-width:769px) {
-            .check-select {
-                font-size: 90px;
+        <style>
+            .btn-produto {
+                border: 0;
+                background: transparent;
+                border-radius: 0;
+                outline: none;
+                cursor: pointer;
+                margin-bottom: 15px;
+                position: relative;
             }
-        }
-
-        .mascara-marcado {
-            background-color: rgba(255, 255, 255, 0.6);
-            position: absolute;
-            display: block;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            z-index: 5;
-            text-align: center;
-            display: none;
-        }
-
-        .mascara-esgotado {
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            position: absolute;
-            display: block;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            z-index: 5;
-            text-align: center;
-            display: none;
-        }
-
-        .mascara-esgotado .mask-esgotado {
-            color: #fff;
-            position: relative;
-            top: 4px;
-            left: 5px;
-            font-size: 16px;
-            float: left;
-        }
-
-        .mascara-esgotado::before {
-            content: " ";
-            background-image: linear-gradient(134deg, rgba(215, 45, 44, 1)50%, rgba(215, 45, 44, 0) 50%);
-            width: 40px;
-            height: 40px;
-            position: absolute;
-            left: 0px;
-        }
-
-        .titulo-esgotado {
-            font-weight: bold;
-            padding: 10px;
-            text-align: center;
-            margin-top: 45%;
-            display: block;
-            position: relative;
-            background-color: rgb(207, 36, 44);
-            font-size: medium;
-        }
-
-        .btn-produto.prd-esgotado {
-            cursor: not-allowed;
-        }
-
-        .btn-produto.prd-esgotado>.mascara-esgotado {
-            display: block;
-        }
-
-        .btn-produto.selecionado>.mascara-marcado {
-            display: block;
-        }
-
-        .topo-escolhas {
-            clear: both;
-            padding: 10px 20px;
-            margin-bottom: 10px;
-            margin-top: 10px;
-            background: rgb(207, 36, 44);
-        }
-
-        @media only screen and (max-width:769px) {
+    
+            .btn-produto img {
+                width: 100%;
+            }
+    
+            button[disabled] {
+                cursor: not-allowed;
+            }
+    
+            .check-select {
+                font-size: 120px;
+                position: absolute;
+                left: 25%;
+                top: 25%;
+                color: rgb(255, 255, 255);
+                background-color: green;
+                padding: 20px;
+                border-radius: 50%;
+            }
+    
+            @media only screen and (max-width:769px) {
+                .check-select {
+                    font-size: 90px;
+                }
+            }
+    
+            .mascara-marcado {
+                background-color: rgba(255, 255, 255, 0.6);
+                position: absolute;
+                display: block;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+                z-index: 5;
+                text-align: center;
+                display: none;
+            }
+    
+            .mascara-esgotado {
+                background-color: rgba(0, 0, 0, 0.5);
+                color: white;
+                position: absolute;
+                display: block;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+                z-index: 5;
+                text-align: center;
+                display: none;
+            }
+    
+            .mascara-esgotado .mask-esgotado {
+                color: #fff;
+                position: relative;
+                top: 4px;
+                left: 5px;
+                font-size: 16px;
+                float: left;
+            }
+    
+            .mascara-esgotado::before {
+                content: " ";
+                background-image: linear-gradient(134deg, rgba(215, 45, 44, 1)50%, rgba(215, 45, 44, 0) 50%);
+                width: 40px;
+                height: 40px;
+                position: absolute;
+                left: 0px;
+            }
+    
+            .titulo-esgotado {
+                font-weight: bold;
+                padding: 10px;
+                text-align: center;
+                margin-top: 45%;
+                display: block;
+                position: relative;
+                background-color: rgb(207, 36, 44);
+                font-size: medium;
+            }
+    
+            .btn-produto.prd-esgotado {
+                cursor: not-allowed;
+            }
+    
+            .btn-produto.prd-esgotado>.mascara-esgotado {
+                display: block;
+            }
+    
+            .btn-produto.selecionado>.mascara-marcado {
+                display: block;
+            }
+    
             .topo-escolhas {
                 clear: both;
-                padding: 5px 10px;
-                margin-bottom: 5px;
-                margin-top: 5px;
+                padding: 10px 20px;
+                margin-bottom: 10px;
+                margin-top: 10px;
                 background: rgb(207, 36, 44);
             }
-        }
-
-        .titulo-escolha {
-            background: none;
-            border: 0;
-            outline: none;
-            cursor: pointer;
-            width: 100%;
-            text-align: left;
-            color: white;
-            font-size: 21px;
-            font-weight: bold;
-        }
-
-        @media only screen and (max-width:769px) {
+    
+            @media only screen and (max-width:769px) {
+                .topo-escolhas {
+                    clear: both;
+                    padding: 5px 10px;
+                    margin-bottom: 15px;
+                    margin-top: 5px;
+                    background: rgb(207, 36, 44);
+                }
+            }
+    
             .titulo-escolha {
-                font-size: 15px;
+                background: none;
+                border: 0;
+                outline: none;
+                cursor: pointer;
+                width: 100%;
+                text-align: left;
+                color: white;
+                font-size: 21px;
+                font-weight: bold;
             }
-        }
-
-        .icone-escolha {
-            margin-right: 15px;
-        }
-
-        @media only screen and (max-width:769px) {
+    
+            @media only screen and (max-width:769px) {
+                .titulo-escolha {
+                    font-size: 15px;
+                }
+            }
+    
             .icone-escolha {
-                margin-right: 10px;
+                margin-right: 15px;
             }
-        }
-
-        .icone-down {
-            float: right;
-            font-size: 30px;
-            transition: all 0.2s;
-        }
-
-        @media only screen and (max-width:769px) {
+    
+            @media only screen and (max-width:769px) {
+                .icone-escolha {
+                    margin-right: 10px;
+                }
+            }
+    
             .icone-down {
-                font-size: 20px;
+                float: right;
+                font-size: 30px;
+                transition: all 0.2s;
             }
-        }
-
-        .titulo-escolha.open .icone-down {
-            transform: rotate(180deg);
-        }
-
-        .wrap-btn-bottom {
-            max-width: 350px;
-            display: block;
-            margin: 15px auto 0;
-        }
-
-        .btn-proximo-passo {
-            clear: both;
-            padding: 10px 20px;
-            margin-bottom: 10px;
-            background: rgb(207, 36, 44);
-            outline: none;
-            color: white;
-            border: 0;
-            width: 100%;
-            font-size: 20px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        @media only screen and (max-width:769px) {
+    
+            @media only screen and (max-width:769px) {
+                .icone-down {
+                    font-size: 20px;
+                }
+            }
+    
+            .titulo-escolha.open .icone-down {
+                transform: rotate(180deg);
+            }
+    
+            .wrap-btn-bottom {
+                max-width: 350px;
+                display: block;
+                margin: 15px auto 0;
+            }
+    
             .btn-proximo-passo {
-                font-size: 18px;
+                clear: both;
+                padding: 10px 20px;
+                margin-bottom: 10px;
+                background: rgb(207, 36, 44);
+                outline: none;
+                color: white;
+                border: 0;
+                width: 100%;
+                font-size: 20px;
+                font-weight: bold;
+                cursor: pointer;
             }
-
+    
+            @media only screen and (max-width:769px) {
+                .btn-proximo-passo {
+                    font-size: 18px;
+                }
+    
+                .icon-proximo-passo {
+                    float: right;
+                    font-size: 20px;
+                }
+    
+                #aviso-promo {
+                    margin-top: 10px;
+                }
+            }
+    
             .icon-proximo-passo {
                 float: right;
-                font-size: 20px;
+                font-size: 25px;
             }
-
+    
             #aviso-promo {
-                margin-top: 10px;
+                margin-top: 15px;
             }
-        }
-
-        .icon-proximo-passo {
-            float: right;
-            font-size: 25px;
-        }
-
-        #aviso-promo {
-            margin-top: 15px;
-        }
-
-        .header-selecionados {
-            clear: both;
-            padding: 10px 20px;
-            text-align: center;
-            margin-bottom: 10px;
-            background: rgb(207, 36, 44);
-        }
-
-        .header-selecionados span {
-            color: white;
-            font-size: 15px;
-            font-weight: bold;
-        }
-
-        #selecionados {
-            display: none;
-            float: right;
-            position: fixed;
-            right: -180px;
-            width: 180px;
-            z-index: 1;
-            background: white;
-            transition: all 0.3s;
-        }
-
-        .produto-1-selecionado img,
-        .produto-2-selecionado img {
-            width: 90%;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .produto-1-selecionado img {
-            margin-bottom: 15px;
-        }
-
-        .aviso-selecionados {
-            width: 100%;
-            text-align: center;
-            display: block;
-            position: relative;
-            font-size: medium;
-            font-weight: bold;
-            padding-top: 15px;
-            margin-bottom: 15px;
-            color: rgb(207, 36, 44);
-        }
-
-        /* Modal */
-        #modal-selecionados {
-            display: none;
-            position: fixed;
-            z-index: 10;
-            background: rgba(0, 0, 0, 0.5);
-            width: 100%;
-            height: 100%;
-        }
-
-        .wrap-modal {
-            max-width: 650px;
-            background: white;
-            display: block;
-            margin: 0 auto;
-            margin-top: 5%;
-            position: relative;
-        }
-
-        @media only screen and (max-width: 1025px) {
+    
+            .header-selecionados {
+                clear: both;
+                padding: 10px 20px;
+                text-align: center;
+                margin-bottom: 10px;
+                background: rgb(207, 36, 44);
+            }
+    
+            .header-selecionados span {
+                color: white;
+                font-size: 15px;
+                font-weight: bold;
+            }
+    
+            #selecionados {
+                display: none;
+                float: right;
+                position: fixed;
+                right: -180px;
+                width: 180px;
+                z-index: 1;
+                background: white;
+                transition: all 0.3s;
+            }
+    
+            .produto-1-selecionado img,
+            .produto-2-selecionado img {
+                width: 90%;
+                display: block;
+                margin: 0 auto;
+            }
+    
+            .produto-1-selecionado img {
+                margin-bottom: 15px;
+            }
+    
+            .aviso-selecionados {
+                width: 100%;
+                text-align: center;
+                display: block;
+                position: relative;
+                font-size: medium;
+                font-weight: bold;
+                padding-top: 15px;
+                margin-bottom: 15px;
+                color: rgb(207, 36, 44);
+            }
+    
+            /* Modal */
+            #modal-selecionados {
+                display: none;
+                position: fixed;
+                z-index: 10;
+                background: rgba(0, 0, 0, 0.5);
+                width: 100%;
+                height: 100%;
+            }
+    
             .wrap-modal {
-                margin-top: 150px;
+                max-width: 650px;
+                background: white;
+                display: block;
+                margin: 0 auto;
+                margin-top: 5%;
+                position: relative;
             }
-        }
-
-        @media only screen and (max-width: 769px) {
-            .wrap-modal {
-                margin-top: 200px;
+    
+            @media only screen and (max-width: 1025px) {
+                .wrap-modal {
+                    margin-top: 150px;
+                }
             }
-        }
-
-        @media only screen and (max-width: 420px) {
-            .wrap-modal {
-                margin: 140px 10px 0;
+    
+            @media only screen and (max-width: 769px) {
+                .wrap-modal {
+                    margin-top: 200px;
+                }
             }
-        }
+    
+            @media only screen and (max-width: 420px) {
+                .wrap-modal {
+                    margin: 140px 10px 0;
+                }
+            }
+    
+            .header-modal-selecionados {
+                background: rgb(207, 36, 44);
+                color: white;
+                text-align: center;
+                padding: 15px;
+                font-size: large;
+                font-weight: bold;
+                margin-bottom: 5px;
+                position: relative;
+            }
+    
+            .close-modal-escolhidos {
+                position: absolute;
+                right: 15px;
+                top: 15px;
+                font-size: larger;
+                cursor: pointer;
+            }
+    
+            .close-modal-escolhidos:hover {
+                opacity: 0.5;
+            }
+    
+            .body-modal-selecionados {
+                position: relative;
+                display: block;
+                clear: both;
+            }
+    
+            .aviso-body-modal {
+                padding: 10px;
+                font-size: medium;
+                text-align: center;
+            }
+    
+            .aviso-bold {
+                font-weight: bold;
+            }
+    
+            .produto1,
+            .produto2 {
+                width: 50%;
+                position: relative;
+                float: left;
+                padding: 15px;
+            }
+    
+            .produto1 img,
+            .produto2 img {
+                width: 100%;
+            }
+    
+            .footer-modal-selecionados {
+                position: relative;
+                display: block;
+                clear: both;
+                text-align: center;
+                padding: 5px;
+            }
+    
+            .btn-proximo-passo-modal {
+                padding: 10px 20px;
+                background: rgb(207, 36, 44);
+                outline: none;
+                color: white;
+                border: 0;
+                width: 100%;
+                font-size: 20px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+    
+            /* Campo Combo */
+            .header-pg{
+                margin-bottom: 15px;
+            }
+            .header-pg .top-header{
+                margin-bottom: 15px;
+            }
+            .header-pg .top-header .principal-header{
+                font-size: 3em;
+                line-height: 1.5em;
+                font-weight: lighter;
+            }
+            .header-pg .top-header .secundario-header{
+                font-size: 1.5em;
+                padding: 0 6em;
+                font-weight: 300;
+                margin-top: 25px;
+                margin-bottom: 35px;
+            }
+            
+            .header-pg .middle-header{
+                margin-bottom: 15px;
+            }
+            .header-pg .middle-header .box-combo{
+                
+            }
+            .header-pg .middle-header .box-combo img, .header-pg .middle-header img{
+                width: 100%;
+            }
+            .header-pg .middle-header .box-combo::after{
+                background: url(https://s1.lojistaonline.com.br/lojas/2033/combo-plus.png);
+                background-repeat: no-repeat;
+                background-size: contain;
+                content: "";
+                display: block;
+                height: 75px;
+                position: absolute;
+                right: -30px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 65px;
+            }
+            .header-pg .middle-header .box-combo:nth-child(2)::after{
+                right: -20px;
+            }
+            .header-pg .bottom-header{
 
-        .header-modal-selecionados {
-            background: rgb(207, 36, 44);
-            color: white;
-            text-align: center;
-            padding: 15px;
-            font-size: large;
-            font-weight: bold;
-            margin-bottom: 5px;
-            position: relative;
-        }
+            }
 
-        .close-modal-escolhidos {
-            position: absolute;
-            right: 15px;
-            top: 15px;
-            font-size: larger;
-            cursor: pointer;
-        }
+            .header-pg .bottom-header .principal-bottom{
+                font-size: 2em;
+                margin-bottom: 10px;
+                font-weight: 200;
+            }
 
-        .close-modal-escolhidos:hover {
-            opacity: 0.5;
-        }
-
-        .body-modal-selecionados {
-            position: relative;
-            display: block;
-            clear: both;
-        }
-
-        .aviso-body-modal {
-            padding: 10px;
-            font-size: medium;
-            text-align: center;
-        }
-
-        .aviso-bold {
-            font-weight: bold;
-        }
-
-        .produto1,
-        .produto2 {
-            width: 50%;
-            position: relative;
-            float: left;
-            padding: 15px;
-        }
-
-        .produto1 img,
-        .produto2 img {
-            width: 100%;
-        }
-
-        .footer-modal-selecionados {
-            position: relative;
-            display: block;
-            clear: both;
-            text-align: center;
-            padding: 5px;
-        }
-
-        .btn-proximo-passo-modal {
-            padding: 10px 20px;
-            background: rgb(207, 36, 44);
-            outline: none;
-            color: white;
-            border: 0;
-            width: 100%;
-            font-size: 20px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* Campo Combo */
-        .header-pg{
-
-        }
-        .header-pg .textos-header{
-
-        }
-        .header-pg .textos-header .principal-header{
-
-        }
-        .header-pg .textos-header .principal-header .secundario-header{
-
-        }
-        
-        .header-pg .textos-header .middle-header{
-
-        }
-        .header-pg .textos-header .middle-header .box-combo{
-
-        }
-        .header-pg .textos-header .middle-header .box-combo::after{
-            background: url(../images/combo-plus.png) no-repeat 50%;
-            content: "";
-            display: block;
-            height: 75px;
-            position: absolute;
-            right: -30px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 71px;
-        }
-
-    </style>
-    <div class="container">
-        <div id="selecionados" class="hidden-md hidden-sm hidden-xs">
-            <div class="header-selecionados">
-                <span>
-                    Produtos Selecionados
-                </span>
-            </div>
-            <div class="body-selecionados">
-                <div class="produto-1-selecionado">
+            .header-pg .bottom-header .secundario-bottom{
+                font-size: 2em;
+                margin-bottom: 10px;
+                font-weight: 200;
+            }
+            @media only screen and (max-width:1025px){
+                .header-pg .middle-header .box-combo::after{
+                    width: 40px;
+                }
+                .header-pg .middle-header .box-combo:nth-child(2)::after{
+                    right: 10px;                   
+                }
+            }
+            @media only screen and (max-width:769px){
+                .header-pg{
+                    margin-bottom: 0px;
+                }
+                .header-pg .top-header .principal-header{
+                    font-size: 2em;
+                    line-height: 1.5em;
+                    margin-bottom: 15px;
+                }  
+                .header-pg .top-header .secundario-header{
+                    font-size: 1.3em;
+                    padding: 0 2em;
+                }              
+                .header-pg .middle-header .box-combo:nth-child(even)::after{
+                    content: none;
+                }
+                .header-pg .middle-header .box-combo::after{
+                    width:40px;
+                }
+                .header-pg .bottom-header .principal-bottom{
+                    font-size: 2em;
+                    line-height: 1.5em;
+                    margin-bottom: 15px;
+                }
+                .header-pg .bottom-header .secundario-bottom{
+                    font-size: 1.3em;
+                    padding: 0 2em;
+                }
+            }
+            @media only screen and (max-width:570px){
+                .header-pg{
+                    margin-bottom: 0px;
+                }
+                .header-pg .top-header .principal-header{
+                    font-size: 2em;
+                    line-height: 1.5em;
+                }                
+                .header-pg .middle-header .box-combo:nth-child(even)::after{
+                    content: none;
+                }
+                .header-pg .middle-header .box-combo::after{
+                    width:40px;
+                }
+            }
+        </style>
+        <div class="container">
+            <div id="selecionados" class="hidden-md hidden-sm hidden-xs">
+                <div class="header-selecionados">
+                    <span>
+                        Produtos Selecionados
+                    </span>
                 </div>
-                <div class="produto-2-selecionado">
+                <div class="body-selecionados">
+                    <div class="produto-1-selecionado">
+                    </div>
+                    <div class="produto-2-selecionado">
+                    </div>
+                </div>
+                <div class="wrap-btn-esconder-selecionados">
+    
                 </div>
             </div>
-            <div class="wrap-btn-esconder-selecionados">
-
-            </div>
-        </div>
-        <div class="row" style="padding-bottom: 40px">
-            <div class="header-pg">
-                <div class="textos-header">
-                    <h2 class="principal-header">Chegou a oportunidade de ter as melhores ferramentas a bateria em uma oferta imperdível</h2>
-                    <p class="secundario-header">
-                        Combo Pague Menos Bosch, uma oportunidade de ter as ferramentas a bateria mais indicadas para o seu trabalho. Veja como montar o seu combo.
-                    </p>
+            <div class="row" style="padding-bottom: 40px">
+                <div class="header-pg">
+                    <div class="top-header">
+                        <div class="">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <span class="principal-header">Chegou a oportunidade de ter as melhores ferramentas a bateria em uma oferta imperdível</span>
+                                    <p class="secundario-header">
+                                        Combo Pague Menos Bosch, uma oportunidade de ter as ferramentas a bateria mais indicadas para o seu trabalho. Veja como montar o seu combo.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                        
                     <div class="middle-header">
-                        <div class="row">
-                            <div class="col-md-3 col-xs-6 box-combo">
-
+                        <div class="">
+                            <div class="row">
+                                <div class="col-md-3 col-xs-6 box-combo">
+                                    <img src="https://s1.lojistaonline.com.br/lojas/2033/combo-1.png" alt="Combo 1">
+                                </div>
+                                <div class="col-md-3 col-xs-6 box-combo">
+                                    <img src="https://s1.lojistaonline.com.br/lojas/2033/combo-2.png" alt="Combo 2">
+                                </div>
+                                <div class="col-md-3 col-xs-6 box-combo">
+                                    <img src="https://s1.lojistaonline.com.br/lojas/2033/combo-3.png" alt="Combo 3">
+                                </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <img src="https://s1.lojistaonline.com.br/lojas/2033/combo-4.png" alt="Combo 4">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-header">
+                        <div class="">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <span class="principal-bottom">Tudo isso com preço fixo e até 50% de desconto</span>
+                                    <p class="secundario-bottom">
+                                        Agora que você já sabe como montar o seu Combo, veja abaixo os produtos participantes:
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="topo-escolhas">
-                    <button class="titulo-escolha btn-prod-1 open" data-toggle="collapse" data-target="#produtos-1">
-
-                        Escolha o 1º Produto
-
-                    </button>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="topo-escolhas">
+                        <button class="titulo-escolha btn-prod-1 open" data-toggle="collapse" data-target="#produtos-1">
+    
+                            Escolha o 1º Produto
+    
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="produtos-list collapse in" id="produtos-1" data-escolha="1">
+    
+    
+                    <span>&nbsp;</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="topo-escolhas">
+                        <button class="titulo-escolha btn-prod-2 collapsed">
+                            Escolha o 2º Produto
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="produtos-list collapse" id="produtos-2" data-escolha="2">
+    
+    
+                    <span>&nbsp;</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="aviso-promo">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="hidden-lg">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+    
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="wrap-btn-bottom">
+                        <button class="btn-proximo-passo" disabled>Prosseguir </button>
+                    </div>
+                    <span>&nbsp;</span>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="produtos-list collapse in" id="produtos-1" data-escolha="1">
 
-
-                <span>&nbsp;</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="topo-escolhas">
-                    <button class="titulo-escolha btn-prod-2 collapsed">
-                        Escolha o 2º Produto
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="produtos-list collapse" id="produtos-2" data-escolha="2">
-
-
-                <span>&nbsp;</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div id="aviso-promo">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis erat massa. Maecenas
-                        condimentum pretium congue. In eu nunc euismod, pulvinar dui a, pharetra neque. Vestibulum a sem
-                        laoreet purus vehicula blandit nec sit amet odio. Pellentesque habitant morbi tristique senectus
-                        et netus et malesuada fames ac turpis egestas. Sed dictum vitae ipsum id malesuada. Aliquam
-                        rutrum cursus tellus eget commodo. Maecenas aliquam, nulla ut aliquam iaculis, sem nulla commodo
-                        leo, nec pulvinar justo nibh vitae nisl. Sed tortor purus, gravida ac lectus nec, pulvinar
-                        congue sapien. Cras id rhoncus ipsum, id varius est. Quisque id rutrum ipsum.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="hidden-lg">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="wrap-btn-bottom">
-                    <button class="btn-proximo-passo" disabled>Prosseguir </button>
-                </div>
-                <span>&nbsp;</span>
-            </div>
-        </div>
-    </div>
-
-    <script id="corpo-produto-btn" type="text/html">
+        <script id="corpo-produto-btn" type="text/html">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <button class="btn-produto {ESGOTADO}" data-link="{LINK_PRODUTO}" data-id-produto="{ID_PRODUTO}">
                     <div class="mascara-marcado">
@@ -514,7 +615,7 @@
             </div>
         </script>
 
-    <script id="corpo-modal-produtos" type="text/html">
+        <script id="corpo-modal-produtos" type="text/html">
             <div id="modal-selecionados">
                 <div class="wrap-modal">
                     <div class="header-modal-selecionados">
@@ -546,7 +647,7 @@
             </div>
         </script>
 
-    <script>
+        <script>
         var corpoBtnPrd = $('#corpo-produto-btn').clone().html();
         var corpoModalPrds = $('#corpo-modal-produtos').clone().html();
         var listEscolhas = [];
@@ -554,32 +655,52 @@
             {
                 idPrd: 212095,
                 linkPrd: "https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212095/produto/",
-                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg"
+                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15097.jpg"
             },
             {
                 idPrd: 212095,
                 linkPrd: "https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212095/produto/",
-                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg"
+                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15099.jpg"
             },
             {
                 idPrd: 143028,
                 linkPrd: "https://www.ressegdistribuidora.com.br/parafusadeira-dewalt-dw253-720w-2500rpm/143028/produto/",
-                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg"
+                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15100.jpg"
             },
             {
                 idPrd: 212095,
                 linkPrd: "https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212095/produto/",
-                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg"
+                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15101.jpg"
             },
             {
                 idPrd: 143100,
                 linkPrd: "https://www.ressegdistribuidora.com.br/furadeira-de-impacto-12-dw520-dewalt/143100/produto/",
-                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg"
+                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15102.jpg"
             },
             {
                 idPrd: 143100,
                 linkPrd: "https://www.ressegdistribuidora.com.br/furadeira-de-impacto-12-dw520-dewalt/143100/produto/",
-                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/img/14378.jpg"
+                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15103.jpg"
+            },
+            {
+                idPrd: 143100,
+                linkPrd: "https://www.ressegdistribuidora.com.br/furadeira-de-impacto-12-dw520-dewalt/143100/produto/",
+                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15104.jpg"
+            },
+            {
+                idPrd: 143100,
+                linkPrd: "https://www.ressegdistribuidora.com.br/furadeira-de-impacto-12-dw520-dewalt/143100/produto/",
+                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15105.jpg"
+            },
+            {
+                idPrd: 143100,
+                linkPrd: "https://www.ressegdistribuidora.com.br/furadeira-de-impacto-12-dw520-dewalt/143100/produto/",
+                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15106.jpg"
+            },
+            {
+                idPrd: 143100,
+                linkPrd: "https://www.ressegdistribuidora.com.br/furadeira-de-impacto-12-dw520-dewalt/143100/produto/",
+                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15108.jpg"
             }
         ];
 
@@ -637,6 +758,19 @@
                     $('#produtos-1').prepend(linha);
                     $('#produtos-2').prepend(linha);
                 });
+            });
+        };
+        
+        var montaPrdsDev = function(lista){
+            lista.map(function(obj){
+                var linha = corpoBtnPrd;
+                linha = linha.replace(/{LINK_PRODUTO}/g,obj.linkPrd)
+                            .replace(/{ESGOTADO}/g,'')
+                            .replace(/{ID_PRODUTO}/g,obj.idPrd)
+                            .replace(/{IMAGEM_PRODUTO}/g,obj.imagemPrd);
+
+                $('#produtos-1').prepend(linha);
+                $('#produtos-2').prepend(linha);
             });
         };
         montaPrds(listPrd);
@@ -717,4 +851,4 @@
             }, 500);
         });
     </script>
-</section>
+    </section>
