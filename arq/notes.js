@@ -24,3 +24,19 @@ var adcCarrinho = function(listaAdc){
         });
     });
 };
+
+// Para testar
+$.ajax({
+    "url": "https://www.ressegdistribuidora.com.br/b2c/loja/Pedido.do?action=addItens&idLoja=2033&idPrds=215668&qtdPrds=1",
+    "method": "POST",
+    "headers": {
+        "Accept": "*/*",
+        "Referer": "https://www.ressegdistribuidora.com.br/b2c/esmerilhadeira-a-bateria-18v-gws-18-125v-li-professi.(produto-exclusivo-do-combo-bosch-pague-menos)/215668/produto/",
+    },
+    "success":function(response){
+        console.log("Sucesso item ");
+    },
+    "error":function(response){
+        console.log("Error item ");
+    }
+});
