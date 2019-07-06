@@ -1,854 +1,865 @@
 <section id="promo-bosh">
-        <style>
-            .btn-produto {
-                border: 0;
-                background: transparent;
-                border-radius: 0;
-                outline: none;
-                cursor: pointer;
-                margin-bottom: 15px;
-                position: relative;
-            }
-    
-            .btn-produto img {
-                width: 100%;
-            }
-    
-            button[disabled] {
-                cursor: not-allowed;
-            }
-    
-            .check-select {
-                font-size: 120px;
-                position: absolute;
-                left: 25%;
-                top: 25%;
-                color: rgb(255, 255, 255);
-                background-color: green;
-                padding: 20px;
-                border-radius: 50%;
-            }
-    
-            @media only screen and (max-width:769px) {
-                .check-select {
-                    font-size: 90px;
-                }
-            }
-    
-            .mascara-marcado {
-                background-color: rgba(255, 255, 255, 0.6);
-                position: absolute;
-                display: block;
-                width: 100%;
-                height: 100%;
-                left: 0;
-                top: 0;
-                z-index: 5;
-                text-align: center;
-                display: none;
-            }
-    
-            .mascara-esgotado {
-                background-color: rgba(0, 0, 0, 0.5);
-                color: white;
-                position: absolute;
-                display: block;
-                width: 100%;
-                height: 100%;
-                left: 0;
-                top: 0;
-                z-index: 5;
-                text-align: center;
-                display: none;
-            }
-    
-            .mascara-esgotado .mask-esgotado {
-                color: #fff;
-                position: relative;
-                top: 4px;
-                left: 5px;
-                font-size: 16px;
-                float: left;
-            }
-    
-            .mascara-esgotado::before {
-                content: " ";
-                background-image: linear-gradient(134deg, rgba(215, 45, 44, 1)50%, rgba(215, 45, 44, 0) 50%);
-                width: 40px;
-                height: 40px;
-                position: absolute;
-                left: 0px;
-            }
-    
-            .titulo-esgotado {
-                font-weight: bold;
-                padding: 10px;
-                text-align: center;
-                margin-top: 45%;
-                display: block;
-                position: relative;
-                background-color: rgb(207, 36, 44);
-                font-size: medium;
-            }
-    
-            .btn-produto.prd-esgotado {
-                cursor: not-allowed;
-            }
-    
-            .btn-produto.prd-esgotado>.mascara-esgotado {
-                display: block;
-            }
-    
-            .btn-produto.selecionado>.mascara-marcado {
-                display: block;
-            }
-    
-            .topo-escolhas {
-                clear: both;
-                padding: 10px 20px;
-                margin-bottom: 10px;
-                margin-top: 10px;
-                background: rgb(207, 36, 44);
-            }
-    
-            @media only screen and (max-width:769px) {
-                .topo-escolhas {
-                    clear: both;
-                    padding: 5px 10px;
-                    margin-bottom: 15px;
-                    margin-top: 5px;
-                    background: rgb(207, 36, 44);
-                }
-            }
-    
-            .titulo-escolha {
-                background: none;
-                border: 0;
-                outline: none;
-                cursor: pointer;
-                width: 100%;
-                text-align: left;
-                color: white;
-                font-size: 21px;
-                font-weight: bold;
-            }
-    
-            @media only screen and (max-width:769px) {
-                .titulo-escolha {
-                    font-size: 15px;
-                }
-            }
-    
-            .icone-escolha {
-                margin-right: 15px;
-            }
-    
-            @media only screen and (max-width:769px) {
-                .icone-escolha {
-                    margin-right: 10px;
-                }
-            }
-    
-            .icone-down {
-                float: right;
-                font-size: 30px;
-                transition: all 0.2s;
-            }
-    
-            @media only screen and (max-width:769px) {
-                .icone-down {
-                    font-size: 20px;
-                }
-            }
-    
-            .titulo-escolha.open .icone-down {
-                transform: rotate(180deg);
-            }
-    
-            .wrap-btn-bottom {
-                max-width: 350px;
-                display: block;
-                margin: 15px auto 0;
-            }
-    
-            .btn-proximo-passo {
-                clear: both;
-                padding: 10px 20px;
-                margin-bottom: 10px;
-                background: rgb(207, 36, 44);
-                outline: none;
-                color: white;
-                border: 0;
-                width: 100%;
-                font-size: 20px;
-                font-weight: bold;
-                cursor: pointer;
-            }
-    
-            @media only screen and (max-width:769px) {
-                .btn-proximo-passo {
-                    font-size: 18px;
-                }
-    
-                .icon-proximo-passo {
-                    float: right;
-                    font-size: 20px;
-                }
-    
-                #aviso-promo {
-                    margin-top: 10px;
-                }
-            }
-    
-            .icon-proximo-passo {
-                float: right;
-                font-size: 25px;
-            }
-    
-            #aviso-promo {
-                margin-top: 15px;
-            }
-    
-            .header-selecionados {
-                clear: both;
-                padding: 10px 20px;
-                text-align: center;
-                margin-bottom: 10px;
-                background: rgb(207, 36, 44);
-            }
-    
-            .header-selecionados span {
-                color: white;
-                font-size: 15px;
-                font-weight: bold;
-            }
-    
-            #selecionados {
-                display: none;
-                float: right;
-                position: fixed;
-                right: -180px;
-                width: 180px;
-                z-index: 1;
-                background: white;
-                transition: all 0.3s;
-            }
-    
-            .produto-1-selecionado img,
-            .produto-2-selecionado img {
-                width: 90%;
-                display: block;
-                margin: 0 auto;
-            }
-    
-            .produto-1-selecionado img {
-                margin-bottom: 15px;
-            }
-    
-            .aviso-selecionados {
-                width: 100%;
-                text-align: center;
-                display: block;
-                position: relative;
-                font-size: medium;
-                font-weight: bold;
-                padding-top: 15px;
-                margin-bottom: 15px;
-                color: rgb(207, 36, 44);
-            }
-    
-            /* Modal */
-            #modal-selecionados {
-                display: none;
-                position: fixed;
-                z-index: 10;
-                background: rgba(0, 0, 0, 0.5);
-                width: 100%;
-                height: 100%;
-            }
-    
-            .wrap-modal {
-                max-width: 650px;
-                background: white;
-                display: block;
-                margin: 0 auto;
-                margin-top: 5%;
-                position: relative;
-            }
-    
-            @media only screen and (max-width: 1025px) {
-                .wrap-modal {
-                    margin-top: 150px;
-                }
-            }
-    
-            @media only screen and (max-width: 769px) {
-                .wrap-modal {
-                    margin-top: 200px;
-                }
-            }
-    
-            @media only screen and (max-width: 420px) {
-                .wrap-modal {
-                    margin: 140px 10px 0;
-                }
-            }
-    
-            .header-modal-selecionados {
-                background: rgb(207, 36, 44);
-                color: white;
-                text-align: center;
-                padding: 15px;
-                font-size: large;
-                font-weight: bold;
-                margin-bottom: 5px;
-                position: relative;
-            }
-    
-            .close-modal-escolhidos {
-                position: absolute;
-                right: 15px;
-                top: 15px;
-                font-size: larger;
-                cursor: pointer;
-            }
-    
-            .close-modal-escolhidos:hover {
-                opacity: 0.5;
-            }
-    
-            .body-modal-selecionados {
-                position: relative;
-                display: block;
-                clear: both;
-            }
-    
-            .aviso-body-modal {
-                padding: 10px;
-                font-size: medium;
-                text-align: center;
-            }
-    
-            .aviso-bold {
-                font-weight: bold;
-            }
-    
-            .produto1,
-            .produto2 {
-                width: 50%;
-                position: relative;
-                float: left;
-                padding: 15px;
-            }
-    
-            .produto1 img,
-            .produto2 img {
-                width: 100%;
-            }
-    
-            .footer-modal-selecionados {
-                position: relative;
-                display: block;
-                clear: both;
-                text-align: center;
-                padding: 5px;
-            }
-    
-            .btn-proximo-passo-modal {
-                padding: 10px 20px;
-                background: rgb(207, 36, 44);
-                outline: none;
-                color: white;
-                border: 0;
-                width: 100%;
-                font-size: 20px;
-                font-weight: bold;
-                cursor: pointer;
-            }
-    
-            /* Campo Combo */
-            .header-pg{
-                margin-bottom: 15px;
-            }
-            .header-pg .top-header{
-                margin-bottom: 15px;
-            }
-            .header-pg .top-header .principal-header{
-                font-size: 3em;
-                line-height: 1.5em;
-                font-weight: lighter;
-            }
-            .header-pg .top-header .secundario-header{
-                font-size: 1.5em;
-                padding: 0 6em;
-                font-weight: 300;
-                margin-top: 25px;
-                margin-bottom: 35px;
-            }
-            
-            .header-pg .middle-header{
-                margin-bottom: 15px;
-            }
-            .header-pg .middle-header .box-combo{
-                
-            }
-            .header-pg .middle-header .box-combo img, .header-pg .middle-header img{
-                width: 100%;
-            }
-            .header-pg .middle-header .box-combo::after{
-                background: url(https://s1.lojistaonline.com.br/lojas/2033/combo-plus.png);
-                background-repeat: no-repeat;
-                background-size: contain;
-                content: "";
-                display: block;
-                height: 75px;
-                position: absolute;
-                right: -30px;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 65px;
-            }
-            .header-pg .middle-header .box-combo:nth-child(2)::after{
-                right: -20px;
-            }
-            .header-pg .bottom-header{
+    <style type="text/css">
+       .btn-produto {
+       border: 0;
+       background: transparent;
+       border-radius: 0;
+       outline: none;
+       cursor: pointer;
+       margin-bottom: 15px;
+       position: relative;
+       }
+       .btn-produto img {
+       width: 100%;
+       }
+       button[disabled] {
+       cursor: not-allowed;
+       }
+       .check-select {
+       font-size: 120px;
+       position: absolute;
+       left: 25%;
+       top: 25%;
+       color: rgb(255, 255, 255);
+       background-color: green;
+       padding: 20px;
+       border-radius: 50%;
+       }
+       @media only screen and (max-width:769px) {
+       .check-select {
+       font-size: 90px;
+       }
+       }
+       .mascara-marcado {
+       background-color: rgba(255, 255, 255, 0.6);
+       position: absolute;
+       display: block;
+       width: 100%;
+       height: 100%;
+       left: 0;
+       top: 0;
+       z-index: 5;
+       text-align: center;
+       display: none;
+       }
+       .mascara-esgotado {
+       background-color: rgba(0, 0, 0, 0.5);
+       color: white;
+       position: absolute;
+       display: block;
+       width: 100%;
+       height: 100%;
+       left: 0;
+       top: 0;
+       z-index: 5;
+       text-align: center;
+       display: none;
+       }
+       .mascara-esgotado .mask-esgotado {
+       color: #fff;
+       position: relative;
+       top: 4px;
+       left: 5px;
+       font-size: 16px;
+       float: left;
+       }
+       .mascara-esgotado::before {
+       content: " ";
+       background-image: linear-gradient(134deg, rgba(215, 45, 44, 1)50%, rgba(215, 45, 44, 0) 50%);
+       width: 40px;
+       height: 40px;
+       position: absolute;
+       left: 0px;
+       }
+       .titulo-esgotado {
+       font-weight: bold;
+       padding: 10px;
+       text-align: center;
+       margin-top: 45%;
+       display: block;
+       position: relative;
+       background-color: rgb(207, 36, 44);
+       font-size: medium;
+       }
+       .btn-produto.prd-esgotado {
+       cursor: not-allowed;
+       }
+       .btn-produto.prd-esgotado>.mascara-esgotado {
+       display: block;
+       }
+       .btn-produto.selecionado>.mascara-marcado {
+       display: block;
+       }
+       .topo-escolhas {
+       clear: both;
+       padding: 10px 20px;
+       margin-bottom: 10px;
+       margin-top: 10px;
+       background: rgb(207, 36, 44);
+       }
+       @media only screen and (max-width:769px) {
+       .topo-escolhas {
+       clear: both;
+       padding: 5px 10px;
+       margin-bottom: 15px;
+       margin-top: 5px;
+       background: rgb(207, 36, 44);
+       }
+       }
+       .titulo-escolha {
+       background: none;
+       border: 0;
+       outline: none;
+       cursor: pointer;
+       width: 100%;
+       text-align: left;
+       color: white;
+       font-size: 21px;
+       font-weight: bold;
+       }
+       @media only screen and (max-width:769px) {
+       .titulo-escolha {
+       font-size: 15px;
+       }
+       }
+       .icone-escolha {
+       margin-right: 15px;
+       }
+       @media only screen and (max-width:769px) {
+       .icone-escolha {
+       margin-right: 10px;
+       }
+       }
+       .icone-down {
+       float: right;
+       font-size: 30px;
+       transition: all 0.2s;
+       }
+       @media only screen and (max-width:769px) {
+       .icone-down {
+       font-size: 20px;
+       }
+       }
+       .titulo-escolha.open .icone-down {
+       transform: rotate(180deg);
+       }
+       .wrap-btn-bottom {
+       max-width: 350px;
+       display: block;
+       margin: 15px auto 0;
+       }
+       .btn-proximo-passo {
+       clear: both;
+       padding: 10px 20px;
+       margin-bottom: 10px;
+       background: rgb(207, 36, 44);
+       outline: none;
+       color: white;
+       border: 0;
+       width: 100%;
+       font-size: 20px;
+       font-weight: bold;
+       cursor: pointer;
+       }
+       @media only screen and (max-width:769px) {
+       .btn-proximo-passo {
+       font-size: 18px;
+       }
+       .icon-proximo-passo {
+       float: right;
+       font-size: 20px;
+       }
+       #aviso-promo {
+       margin-top: 10px;
+       }
+       }
+       .icon-proximo-passo {
+       float: right;
+       font-size: 25px;
+       }
+       #aviso-promo {
+       margin-top: 15px;
+       }
+       .header-selecionados {
+       clear: both;
+       padding: 10px 20px;
+       text-align: center;
+       margin-bottom: 10px;
+       background: rgb(207, 36, 44);
+       }
+       .header-selecionados span {
+       color: white;
+       font-size: 15px;
+       font-weight: bold;
+       }
+       #selecionados {
+       display: none;
+       float: right;
+       position: fixed;
+       right: -180px;
+       width: 180px;
+       z-index: 1;
+       background: white;
+       transition: all 0.3s;
+       }
+       .produto-1-selecionado img,
+       .produto-2-selecionado img {
+       width: 90%;
+       display: block;
+       margin: 0 auto;
+       }
+       .produto-1-selecionado img {
+       margin-bottom: 15px;
+       }
+       .aviso-selecionados {
+       width: 100%;
+       text-align: center;
+       display: block;
+       position: relative;
+       font-size: medium;
+       font-weight: bold;
+       padding-top: 15px;
+       margin-bottom: 15px;
+       color: rgb(207, 36, 44);
+       }
+       /* Modal */
+       #modal-selecionados {
+       display: none;
+       position: fixed;
+       z-index: 10;
+       background: rgba(0, 0, 0, 0.5);
+       width: 100%;
+       height: 100%;
+       }
+       .wrap-modal {
+       max-width: 650px;
+       background: white;
+       display: block;
+       margin: 0 auto;
+       margin-top: 5%;
+       position: relative;
+       }
+       @media only screen and (max-width: 1025px) {
+       .wrap-modal {
+       margin-top: 150px;
+       }
+       }
+       @media only screen and (max-width: 769px) {
+       .wrap-modal {
+       margin-top: 200px;
+       }
+       }
+       @media only screen and (max-width: 420px) {
+       .wrap-modal {
+       margin: 140px 10px 0;
+       }
+       }
+       .header-modal-selecionados {
+       background: rgb(207, 36, 44);
+       color: white;
+       text-align: center;
+       padding: 15px;
+       font-size: large;
+       font-weight: bold;
+       margin-bottom: 5px;
+       position: relative;
+       }
+       .close-modal-escolhidos {
+       position: absolute;
+       right: 15px;
+       top: 15px;
+       font-size: larger;
+       cursor: pointer;
+       }
+       .close-modal-escolhidos:hover {
+       opacity: 0.5;
+       }
+       .body-modal-selecionados {
+       position: relative;
+       display: block;
+       clear: both;
+       }
+       .aviso-body-modal {
+       padding: 10px;
+       font-size: medium;
+       text-align: center;
+       }
+       .aviso-bold {
+       font-weight: bold;
+       }
+       .produto1,
+       .produto2 {
+       width: 50%;
+       position: relative;
+       float: left;
+       padding: 15px;
+       }
+       .produto1 img,
+       .produto2 img {
+       width: 100%;
+       }
+       .footer-modal-selecionados {
+       position: relative;
+       display: block;
+       clear: both;
+       text-align: center;
+       padding: 5px;
+       }
+       .btn-proximo-passo-modal {
+       padding: 10px 20px;
+       background: rgb(207, 36, 44);
+       outline: none;
+       color: white;
+       border: 0;
+       width: 100%;
+       font-size: 20px;
+       font-weight: bold;
+       cursor: pointer;
+       }
+       /* Campo Combo */
+       .header-pg{
+       margin-bottom: 15px;
+       }
+       .header-pg .top-header{
+       margin-bottom: 15px;
+       }
+       .header-pg .top-header .principal-header{
+       font-size: 3em;
+       line-height: 1.5em;
+       font-weight: lighter;
+       }
+       .header-pg .top-header .secundario-header{
+       font-size: 1.5em;
+       padding: 0 6em;
+       font-weight: 300;
+       margin-top: 25px;
+       margin-bottom: 35px;
+       }
+       .header-pg .middle-header{
+       margin-bottom: 15px;
+       }
+       .header-pg .middle-header .box-combo{
+       }
+       .header-pg .middle-header .box-combo img, .header-pg .middle-header img{
+       width: 100%;
+       }
+       .header-pg .middle-header .box-combo::after{
+       background: url(https://s1.lojistaonline.com.br/lojas/2033/combo-plus.png);
+       background-repeat: no-repeat;
+       background-size: contain;
+       content: "";
+       display: block;
+       height: 75px;
+       position: absolute;
+       right: -30px;
+       top: 50%;
+       transform: translateY(-50%);
+       width: 65px;
+       }
+       .body-modal-selecionados .produto1::before {
+            content: " ";
+            background: url(https://s1.lojistaonline.com.br/lojas/2033/combo-plus.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            content: "";
+            display: block;
+            height: 75px;
+            position: absolute;
+            right: -35px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 65px;
+            z-index: 5;
+        }
 
+        @media only screen and (max-width:570px){
+            .body-modal-selecionados .produto1::before {
+                width: 50px;
+                right: -25px;
             }
-
-            .header-pg .bottom-header .principal-bottom{
-                font-size: 2em;
-                margin-bottom: 10px;
-                font-weight: 200;
-            }
-
-            .header-pg .bottom-header .secundario-bottom{
-                font-size: 2em;
-                margin-bottom: 10px;
-                font-weight: 200;
-            }
-            @media only screen and (max-width:1025px){
-                .header-pg .middle-header .box-combo::after{
-                    width: 40px;
-                }
-                .header-pg .middle-header .box-combo:nth-child(2)::after{
-                    right: 10px;                   
-                }
-            }
-            @media only screen and (max-width:769px){
-                .header-pg{
-                    margin-bottom: 0px;
-                }
-                .header-pg .top-header .principal-header{
-                    font-size: 2em;
-                    line-height: 1.5em;
-                    margin-bottom: 15px;
-                }  
-                .header-pg .top-header .secundario-header{
-                    font-size: 1.3em;
-                    padding: 0 2em;
-                }              
-                .header-pg .middle-header .box-combo:nth-child(even)::after{
-                    content: none;
-                }
-                .header-pg .middle-header .box-combo::after{
-                    width:40px;
-                }
-                .header-pg .bottom-header .principal-bottom{
-                    font-size: 2em;
-                    line-height: 1.5em;
-                    margin-bottom: 15px;
-                }
-                .header-pg .bottom-header .secundario-bottom{
-                    font-size: 1.3em;
-                    padding: 0 2em;
-                }
-            }
-            @media only screen and (max-width:570px){
-                .header-pg{
-                    margin-bottom: 0px;
-                }
-                .header-pg .top-header .principal-header{
-                    font-size: 2em;
-                    line-height: 1.5em;
-                }                
-                .header-pg .middle-header .box-combo:nth-child(even)::after{
-                    content: none;
-                }
-                .header-pg .middle-header .box-combo::after{
-                    width:40px;
-                }
-            }
-        </style>
-        <div class="container">
-            <div id="selecionados" class="hidden-md hidden-sm hidden-xs">
-                <div class="header-selecionados">
-                    <span>
-                        Produtos Selecionados
-                    </span>
+        }
+       .header-pg .middle-header .box-combo:nth-child(2)::after{
+       right: -20px;
+       }
+       .header-pg .bottom-header{
+       }
+       .header-pg .bottom-header .principal-bottom{
+       font-size: 2em;
+       margin-bottom: 10px;
+       font-weight: 200;
+       }
+       .header-pg .bottom-header .secundario-bottom{
+       font-size: 2em;
+       margin-bottom: 10px;
+       font-weight: 200;
+       }
+       @media only screen and (max-width:1025px){
+        .header-pg .middle-header .box-combo::after{
+            width: 40px;
+        }
+        .header-pg .middle-header .box-combo:nth-child(2)::after{
+            right: 10px;                   
+        }
+       }
+       @media only screen and (max-width:769px){
+       .header-pg{
+       margin-bottom: 0px;
+       }
+       .header-pg .top-header .principal-header{
+       font-size: 2em;
+       line-height: 1.5em;
+       margin-bottom: 15px;
+       }  
+       .header-pg .top-header .secundario-header{
+       font-size: 1.3em;
+       padding: 0 2em;
+       }              
+       .header-pg .middle-header .box-combo:nth-child(even)::after{
+       content: none;
+       }
+       .header-pg .middle-header .box-combo::after{
+       width:40px;
+       }
+       .header-pg .bottom-header .principal-bottom{
+       font-size: 2em;
+       line-height: 1.5em;
+       margin-bottom: 15px;
+       }
+       .header-pg .bottom-header .secundario-bottom{
+       font-size: 1.3em;
+       padding: 0 2em;
+       }
+       }
+       @media only screen and (max-width:570px){
+       .header-pg{
+       margin-bottom: 0px;
+       }
+       .header-pg .top-header .principal-header{
+       font-size: 2em;
+       line-height: 1.5em;
+       }                
+       .header-pg .middle-header .box-combo:nth-child(even)::after{
+       content: none;
+       }
+       .header-pg .middle-header .box-combo::after{
+       width:40px;
+       }
+       }
+       #iframe-video {
+       margin-bottom: 15px;
+       }	
+    </style>
+    <div class="height-mobile hidden-lg" style="height: 100px;"></div>
+    <div class="container">
+       <div class="hidden-md hidden-sm hidden-xs" id="selecionados">
+          <div class="header-selecionados">
+             <span>Produtos Selecionados </span>
+          </div>
+          <div class="body-selecionados">
+             <div class="produto-1-selecionado">
+                &nbsp;
+             </div>
+             <div class="produto-2-selecionado">
+                &nbsp;
+             </div>
+          </div>
+          <div class="wrap-btn-esconder-selecionados">
+             &nbsp;
+          </div>
+       </div>
+       <div class="row text-center">
+          <div class="col-md-12">
+             <div class="embed-responsive embed-responsive-16by9" id="iframe-video">
+                <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="embed-responsive-item" frameborder="0" src="https://www.youtube.com/embed/xFwH6xBUzdM?res=0&amp;controls=0"></iframe>
+             </div>
+          </div>
+       </div>
+       <div class="row" style="padding-bottom: 40px">
+          <div class="header-pg">
+             <div class="top-header">
+                <div>
+                   <div class="row">
+                      <div class="col-md-12 text-center">
+                         <span class="principal-header">Chegou a oportunidade de ter as melhores ferramentas a bateria em uma oferta imperd&iacute;vel</span>
+                         <p class="secundario-header">
+                            Combo Pague Menos Bosch, uma oportunidade de ter as ferramentas a bateria mais indicadas para o seu trabalho. Veja como montar o seu combo.
+                         </p>
+                      </div>
+                   </div>
                 </div>
-                <div class="body-selecionados">
-                    <div class="produto-1-selecionado">
-                    </div>
-                    <div class="produto-2-selecionado">
-                    </div>
+             </div>
+             <div class="middle-header">
+                <div>
+                   <div class="row">
+                      <div class="col-md-3 col-xs-6 box-combo">
+                         <img alt="Combo 1" src="https://s1.lojistaonline.com.br/lojas/2033/combo-1.png" />
+                      </div>
+                      <div class="col-md-3 col-xs-6 box-combo">
+                         <img alt="Combo 2" src="https://s1.lojistaonline.com.br/lojas/2033/combo-2.png" />
+                      </div>
+                      <div class="col-md-3 col-xs-6 box-combo">
+                         <img alt="Combo 3" src="https://s1.lojistaonline.com.br/lojas/2033/combo-3.png" />
+                      </div>
+                      <div class="col-md-3 col-xs-6">
+                         <img alt="Combo 4" src="https://s1.lojistaonline.com.br/lojas/2033/combo-4.png" />
+                      </div>
+                   </div>
                 </div>
-                <div class="wrap-btn-esconder-selecionados">
-    
+             </div>
+             <div class="bottom-header">
+                <div>
+                   <div class="row">
+                      <div class="col-md-12 text-center">
+                         <span class="principal-bottom">Tudo isso com pre&ccedil;o fixo e at&eacute; 50% de desconto</span>
+                         <p class="secundario-bottom">
+                            Agora que voc&ecirc; j&aacute; sabe como montar o seu Combo, veja abaixo os produtos participantes:
+                         </p>
+                      </div>
+                   </div>
                 </div>
-            </div>
-            <div class="row" style="padding-bottom: 40px">
-                <div class="header-pg">
-                    <div class="top-header">
-                        <div class="">
-                            <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <span class="principal-header">Chegou a oportunidade de ter as melhores ferramentas a bateria em uma oferta imperdível</span>
-                                    <p class="secundario-header">
-                                        Combo Pague Menos Bosch, uma oportunidade de ter as ferramentas a bateria mais indicadas para o seu trabalho. Veja como montar o seu combo.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>                        
-                    <div class="middle-header">
-                        <div class="">
-                            <div class="row">
-                                <div class="col-md-3 col-xs-6 box-combo">
-                                    <img src="https://s1.lojistaonline.com.br/lojas/2033/combo-1.png" alt="Combo 1">
-                                </div>
-                                <div class="col-md-3 col-xs-6 box-combo">
-                                    <img src="https://s1.lojistaonline.com.br/lojas/2033/combo-2.png" alt="Combo 2">
-                                </div>
-                                <div class="col-md-3 col-xs-6 box-combo">
-                                    <img src="https://s1.lojistaonline.com.br/lojas/2033/combo-3.png" alt="Combo 3">
-                                </div>
-                                <div class="col-md-3 col-xs-6">
-                                    <img src="https://s1.lojistaonline.com.br/lojas/2033/combo-4.png" alt="Combo 4">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bottom-header">
-                        <div class="">
-                            <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <span class="principal-bottom">Tudo isso com preço fixo e até 50% de desconto</span>
-                                    <p class="secundario-bottom">
-                                        Agora que você já sabe como montar o seu Combo, veja abaixo os produtos participantes:
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="topo-escolhas">
-                        <button class="titulo-escolha btn-prod-1 open" data-toggle="collapse" data-target="#produtos-1">
-    
-                            Escolha o 1º Produto
-    
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="produtos-list collapse in" id="produtos-1" data-escolha="1">
-    
-    
-                    <span>&nbsp;</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="topo-escolhas">
-                        <button class="titulo-escolha btn-prod-2 collapsed">
-                            Escolha o 2º Produto
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="produtos-list collapse" id="produtos-2" data-escolha="2">
-    
-    
-                    <span>&nbsp;</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="aviso-promo">
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="hidden-lg">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-    
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="wrap-btn-bottom">
-                        <button class="btn-proximo-passo" disabled>Prosseguir </button>
-                    </div>
-                    <span>&nbsp;</span>
-                </div>
-            </div>
-        </div>
-
-        <script id="corpo-produto-btn" type="text/html">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <button class="btn-produto {ESGOTADO}" data-link="{LINK_PRODUTO}" data-id-produto="{ID_PRODUTO}">
-                    <div class="mascara-marcado">
-
-                    </div>
-                    <div class="mascara-esgotado">
-                        <span class="fas fa-ban mask-esgotado"></span>
-                        <span class="titulo-esgotado">Esgotado!</span>
-                    </div>
-                    <img src="{IMAGEM_PRODUTO}" />
-                </button>
-            </div>
-        </script>
-
-        <script id="corpo-modal-produtos" type="text/html">
-            <div id="modal-selecionados">
-                <div class="wrap-modal">
-                    <div class="header-modal-selecionados">
-                        <div class="titulo-modal-selecionados">
-                            Produtos escolhidos
-                        </div>
-                        <span class="close-modal-escolhidos">X</span>
-                    </div>
-                    <div class="body-modal-selecionados">
-                        <div class="aviso-body-modal">
-                            <span class="aviso-bold">
-                                Confirma a escolha dos produtos abaixo?
-                            </span>
-                        </div>
-                        <div class="produto1">
-                            <img src="{IMG_PRD_SELECIONADO_1}" alt="Imagem produto 1">
-                        </div>
-                        <div class="produto2">
-                            <img src="{IMG_PRD_SELECIONADO_2}" alt="Imagem produto 2">
-                        </div>
-                        <span>&nbsp;</span>
-                    </div>
-                    <div class="footer-modal-selecionados">
-                        <div class="wrap-ctn-confirma-md">
-                            <button class="btn-proximo-passo-modal" >Confirmar produtos</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </script>
-
-        <script>
-        var corpoBtnPrd = $('#corpo-produto-btn').clone().html();
-        var corpoModalPrds = $('#corpo-modal-produtos').clone().html();
-        var listEscolhas = [];
-        var listPrd = [
-            {
-                idPrd: 212095,
-                linkPrd: "https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212095/produto/",
-                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15097.jpg"
-            },
-            {
-                idPrd: 212095,
-                linkPrd: "https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212095/produto/",
-                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15099.jpg"
-            },
-            {
-                idPrd: 143028,
-                linkPrd: "https://www.ressegdistribuidora.com.br/parafusadeira-dewalt-dw253-720w-2500rpm/143028/produto/",
-                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15100.jpg"
-            },
-            {
-                idPrd: 212095,
-                linkPrd: "https://www.ressegdistribuidora.com.br/serra-meia-esquadria-de-bancada-skil-3311--10--4800rpm/212095/produto/",
-                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15101.jpg"
-            },
-            {
-                idPrd: 143100,
-                linkPrd: "https://www.ressegdistribuidora.com.br/furadeira-de-impacto-12-dw520-dewalt/143100/produto/",
-                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15102.jpg"
-            },
-            {
-                idPrd: 143100,
-                linkPrd: "https://www.ressegdistribuidora.com.br/furadeira-de-impacto-12-dw520-dewalt/143100/produto/",
-                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15103.jpg"
-            },
-            {
-                idPrd: 143100,
-                linkPrd: "https://www.ressegdistribuidora.com.br/furadeira-de-impacto-12-dw520-dewalt/143100/produto/",
-                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15104.jpg"
-            },
-            {
-                idPrd: 143100,
-                linkPrd: "https://www.ressegdistribuidora.com.br/furadeira-de-impacto-12-dw520-dewalt/143100/produto/",
-                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15105.jpg"
-            },
-            {
-                idPrd: 143100,
-                linkPrd: "https://www.ressegdistribuidora.com.br/furadeira-de-impacto-12-dw520-dewalt/143100/produto/",
-                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15106.jpg"
-            },
-            {
-                idPrd: 143100,
-                linkPrd: "https://www.ressegdistribuidora.com.br/furadeira-de-impacto-12-dw520-dewalt/143100/produto/",
-                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15108.jpg"
-            }
-        ];
-
-        var verificaSelecionados = function () {
-            var prd1 = $('#produtos-1').find('.btn-produto.selecionado').data();
-            var prd2 = $('#produtos-2').find('.btn-produto.selecionado').data();
-
-            if (prd1 != undefined && prd2 != undefined) {
-                $('.btn-proximo-passo').prop('disabled', false);
-            } else {
-                $('.btn-proximo-passo').prop('disabled', true);
-            }
-        };
-        var verificarEstoque = function (link) {
-            return new Promise(function (resolve, reject) {
-                $.get(link, function (res) {
-                    console.log('Verificou estoque!');
-                    var resp1 = res.indexOf('bxBtnComprar') != -1;
-                    var resp2 = res.indexOf('btnAddCarrinho') != -1;
-                    (resp1 == true || resp2 == true) ? resolve(true) : resolve(false);
-                });
-            });
-        };
-        var limpaSelecionado = function (local) {
-            if (local == '#produtos-1') {
-                $('#selecionados').find('.produto-1-selecionado').text('').append('<span class="aviso-selecionados">Escolha o primeiro produto</span>');
-            } else if (local == '#produtos-2') {
-                $('#selecionados').find('.produto-2-selecionado').text('').append('<span class="aviso-selecionados">Escolha o segundo produto</span>');
-            }
-            if (($('#selecionados').find('.produto-1-selecionado').html() == '' || $('#selecionados').find('.produto-1-selecionado').html() == '<span class="aviso-selecionados">Escolha o primeiro produto</span>') && ($('#selecionados').find('.produto-2-selecionado').html() == '' || $('#selecionados').find('.produto-2-selecionado').html() == '<span class="aviso-selecionados">Escolha o segundo produto</span>')) {
-                $('#selecionados').css({ 'right': '-180px' });
-                $('#selecionados').hide('fast');
-                $('#selecionados').find('.produto-1-selecionado').text('');
-                $('#selecionados').find('.produto-2-selecionado').text('');
-            }
-        };
-        var adcSelecionado = function (local, imagem) {
-            if (local == '#produtos-1') {
-                $('#selecionados').find('.produto-1-selecionado').text('').append('<img src="' + imagem + '" style="width: 100%;" />');
-                $('#selecionados').find('.produto-2-selecionado').append('<span class="aviso-selecionados">Escolha o segundo produto</span>');
-            } else if (local == '#produtos-2') {
-                $('#selecionados').find('.produto-2-selecionado').text('').append('<img src="' + imagem + '" style="width: 100%;" />');
-            }
-        };
-        var montaPrds = function (lista) {
-            lista.map(function (obj) {
-                verificarEstoque(obj.linkPrd).then(function (res) {
-                    var linha = corpoBtnPrd;
-                    var temEstoque = res;
-                    linha = linha.replace(/{LINK_PRODUTO}/g, obj.linkPrd)
-                        .replace(/{ESGOTADO}/g, (temEstoque) ? '' : 'prd-esgotado')
-                        .replace(/{ID_PRODUTO}/g, obj.idPrd)
-                        .replace(/{IMAGEM_PRODUTO}/g, obj.imagemPrd);
-
-                    $('#produtos-1').prepend(linha);
-                    $('#produtos-2').prepend(linha);
-                });
-            });
-        };
-        
-        var montaPrdsDev = function(lista){
-            lista.map(function(obj){
-                var linha = corpoBtnPrd;
-                linha = linha.replace(/{LINK_PRODUTO}/g,obj.linkPrd)
-                            .replace(/{ESGOTADO}/g,'')
-                            .replace(/{ID_PRODUTO}/g,obj.idPrd)
-                            .replace(/{IMAGEM_PRODUTO}/g,obj.imagemPrd);
-
-                $('#produtos-1').prepend(linha);
-                $('#produtos-2').prepend(linha);
-            });
-        };
-        montaPrds(listPrd);
-
-        $(document).on('click', '.btn-produto', function () {
-            var local = '#' + $(this).closest('.produtos-list').attr('id');
-            if ($(this).hasClass('selecionado')) {
-                $(this).toggleClass('selecionado');
-                limpaSelecionado(local);
-                verificaSelecionados();
-            } else if (!$(this).hasClass('prd-esgotado')) {
-                if ($(local).find('.selecionado').length) {
-                    console.log('Ja existe marcado no local');
-                } else {
-                    $(this).toggleClass('selecionado');
-                    verificaSelecionados();
-                    adcSelecionado(local, $(this).find('img').attr('src'));
-                    $('#selecionados').show('fast');
-                    $('#selecionados').css({ 'right': '0' });
-                    if (local == '#produtos-1') {
-                        setTimeout(function () {
-                            $('.btn-prod-2').attr({
-                                'data-toggle': 'collapse',
-                                'data-target': '#produtos-2'
-                            });
-                            $('.btn-prod-1').click();
-                            ($('.btn-prod-2').hasClass('collapsed')) ? $('.btn-prod-2').click() : '';
-                        }, 500);
-                    } else if (local == '#produtos-2') {
-                        setTimeout(function () {
-                            $('.btn-prod-2').click();
-                        }, 500);
-                    }
-                }
-            }
-        })
-
-        $('.titulo-escolha').on('click', function () {
-            $(this).toggleClass('open');
-        });
-
-        $('.btn-proximo-passo').on('click', function () {
-            var prd1 = $('#produtos-1').find('.btn-produto.selecionado').data();
-            var prd2 = $('#produtos-2').find('.btn-produto.selecionado').data();
-
-            if (prd1 != undefined && prd2 != undefined) {
-                var modalConfirmarProdutos = corpoModalPrds;
-                var imgPrd1 = $('#produtos-1').find('.btn-produto.selecionado').find('img').attr('src');
-                var imgPrd2 = $('#produtos-2').find('.btn-produto.selecionado').find('img').attr('src');
-                modalConfirmarProdutos = modalConfirmarProdutos.replace(/{IMG_PRD_SELECIONADO_1}/g, imgPrd1)
-                    .replace(/{IMG_PRD_SELECIONADO_2}/g, imgPrd2);
-                $('body').prepend(modalConfirmarProdutos);
-
-                setTimeout(function () {
-                    $('#modal-selecionados').fadeIn('fast');
-                }, 500);
-            } else {
-                listEscolhas = [];
-            }
-        });
-
-        $(document).on('click', '.btn-proximo-passo-modal', function () {
-            var prd1 = $('#produtos-1').find('.btn-produto.selecionado').data();
-            var prd2 = $('#produtos-2').find('.btn-produto.selecionado').data();
-
-            if (prd1 != undefined && prd2 != undefined) {
-                listEscolhas.push(prd1);
-                listEscolhas.push(prd2);
-
-                // adcCarrinho(listEscolhas).then(function(res){console.log(res)});
-            }
-        });
-
-        $(document).on('click', '.close-modal-escolhidos', function () {
-            $('#modal-selecionados').fadeOut('fast');
-            setTimeout(function () {
-                $('body').find('#modal-selecionados').remove();
-            }, 500);
-        });
-    </script>
-    </section>
+             </div>
+          </div>
+       </div>
+       <div class="row">
+          <div class="col-md-12">
+             <div class="topo-escolhas">
+                <button class="titulo-escolha btn-prod-1 open" data-target="#produtos-1" data-toggle="collapse">Escolha o 1&ordm; Produto</button>
+             </div>
+          </div>
+       </div>
+       <div class="row">
+          <div class="produtos-list collapse in" data-escolha="1" id="produtos-1">
+             <span>&nbsp;</span>
+          </div>
+       </div>
+       <div class="row">
+          <div class="col-md-12">
+             <div class="topo-escolhas">
+                <button class="titulo-escolha btn-prod-2 collapsed">Escolha o 2&ordm; Produto</button>
+             </div>
+          </div>
+       </div>
+       <div class="row">
+          <div class="produtos-list collapse" data-escolha="2" id="produtos-2">
+             <span>&nbsp;</span>
+          </div>
+       </div>
+       <div class="row">
+          <div class="col-md-12">
+             <div id="aviso-promo">
+                &nbsp;
+             </div>
+          </div>
+       </div>
+       <div class="row">
+          <div class="hidden-lg">
+             <div class="col-md-12 col-sm-12 col-xs-12">
+                &nbsp;
+             </div>
+          </div>
+       </div>
+       <div class="row">
+          <div class="col-md-12">
+             <div class="wrap-btn-bottom">
+                <button class="btn-proximo-passo" disabled="disabled">Prosseguir</button>
+             </div>
+             <span>&nbsp;</span>
+          </div>
+       </div>
+    </div>
+    <script id="corpo-produto-btn" type="text/html">
+       <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+           <button class="btn-produto {ESGOTADO}" data-link="{LINK_PRODUTO}" data-id-produto="{ID_PRODUTO}">
+               <div class="mascara-marcado">
+       
+               </div>
+               <div class="mascara-esgotado">
+                   <span class="fas fa-ban mask-esgotado"></span>
+                   <span class="titulo-esgotado">Esgotado!</span>
+               </div>
+               <img src="{IMAGEM_PRODUTO}" />
+           </button>
+       </div>
+    </script><script id="corpo-modal-produtos" type="text/html">
+       <div id="modal-selecionados">
+           <div class="wrap-modal">
+               <div class="header-modal-selecionados">
+                   <div class="titulo-modal-selecionados">
+                       Produtos escolhidos
+                   </div>
+                   <span class="close-modal-escolhidos">X</span>
+               </div>
+               <div class="body-modal-selecionados">
+                   <div class="aviso-body-modal">
+                       <span class="aviso-bold">
+                           Confirma a escolha dos produtos abaixo?
+                       </span>
+                   </div>
+                   <div class="produto1">
+                       <img src="{IMG_PRD_SELECIONADO_1}" alt="Imagem produto 1">
+                   </div>
+                   <div class="produto2">
+                       <img src="{IMG_PRD_SELECIONADO_2}" alt="Imagem produto 2">
+                   </div>
+                   <span>&nbsp;</span>
+               </div>
+               <div class="footer-modal-selecionados">
+                   <div class="wrap-ctn-confirma-md">
+                       <button class="btn-proximo-passo-modal" >Confirmar produtos</button>
+                   </div>
+               </div>
+           </div>
+       </div>
+    </script><script>
+       var corpoBtnPrd = $('#corpo-produto-btn').clone().html();
+       var corpoModalPrds = $('#corpo-modal-produtos').clone().html();
+       var listEscolhas = [];
+       var listPrd = [
+           {
+               nomePrd: 'LANTERNA SEM FIO PROFESSIONAL',
+               idPrd: 215662,
+               linkPrd: "https://www.ressegdistribuidora.com.br/b2c/lanterna-sem-fio-professionalproduto-exclusivo-do-combo-bosch-pague-menos-/215662/produto/",
+               imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15097.jpg"
+           },
+           {
+               nomePrd: 'PLAINA A BATERIA 18V GHO 18V-LI',
+               idPrd: 215663,
+               linkPrd: "https://www.ressegdistribuidora.com.br/b2c/plaina-a-bateria-18v-gho-18v-li(produto-exclusivo-do-combo-bosch-pague-menos)/215663/produto/",
+               imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15099.jpg"
+           },
+           {
+               nomePrd: 'SERRA SABRE A BATERIA 18V GSA 18V-LI PROFESSIONAL',
+               idPrd: 215664,
+               linkPrd: "https://www.ressegdistribuidora.com.br/b2c/serra-sabre-a-bateria-18v-gsa-18v-li(produto-exclusivo-do-combo-bosch-pague-menos)/215664/produto/",
+               imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15100.jpg"
+           },
+           {
+               nomePrd: 'SERRA CIRCULAR A BATERIA 18V GKS 18V-57 PROFESSIONAL',
+               idPrd: 215665,
+               linkPrd: "https://www.ressegdistribuidora.com.br/b2c/serra-circular-a-bateria-18v-gks-18v-57-profissional(produto-exclusivo-do-combo-bosch-pague-menos)/215665/produto/",
+               imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15101.jpg"
+           },
+           {
+               nomePrd: 'ESMERILHADEIRA A BATERIA 18V GWS 18-125V-LI PROFESSIONAL',
+               idPrd: 215668,
+               linkPrd: "https://www.ressegdistribuidora.com.br/b2c/esmerilhadeira-a-bateria-18v-gws-18-125v-li-professi.(produto-exclusivo-do-combo-bosch-pague-menos)/215668/produto/",
+               imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15102.jpg"
+           },
+           {
+               nomePrd: 'LIXADEIRA VIBRATÓRIA DE PALMA A BATERIA GSS 18V-10 PROFISSIONAL',
+               idPrd: 215675,
+               linkPrd: "https://www.ressegdistribuidora.com.br/b2c/lixadeira-vibratoria-de-palma-a-bateria-gss-18v-10-(produto-exclusivo-do-combo-bosch-pague-menos)/215675/produto/",
+               imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15103.jpg"
+           },
+           {
+               nomePrd: 'ASPIRADOR DE PÓ A BATERIA GAS 18V-1',
+               idPrd: 215677,
+               linkPrd: "https://www.ressegdistribuidora.com.br/b2c/aspirador-de-po-a-bateria-gas-18v-1(produto-exclusivo-do-combo-bosch-pague-menos)/215677/produto/",
+               imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15104.jpg"
+           },
+           {
+               nomePrd: 'CHAVE DE IMPACTO A BATERIA 18V GDX 180-LI',
+               idPrd: 215678,
+               linkPrd: "https://www.ressegdistribuidora.com.br/b2c/chave-de-impacto-a-bateria-18v-gdx-180-li(produto-exclusivo-do-combo-bosch-pague-menos)/215678/produto/",
+               imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15105.jpg"
+           },
+           {
+               nomePrd: 'MARTELO PERFURADOR ROMPEDORA BATERIA COM SDS PLUS GBH 180-LI',
+               idPrd: 215683,
+               linkPrd: "https://www.ressegdistribuidora.com.br/b2c/martelo-perfurador-rompedor-a-bateria-com-sds-plus-gbh-180-li(produto-exclusivo-do-combo-bosch-pagu)/215683/produto/",
+               imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15106.jpg"
+           },
+           {
+               nomePrd: 'FURADEIRA DE IMPACTO A BATERIA 18V GSB 180-LI PROFESSIONAL',
+               idPrd: 215691,
+               linkPrd: "https://www.ressegdistribuidora.com.br/b2c/furadeira-de-impacto-a-bateria-18v-gsb-180-li(produto-exclusivo-do-combo-bosch-pague-menos)/215691/produto/",
+               imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15108.jpg"
+           }
+       ];
+       
+       var objBolsaBrinde = {
+               nomePrd: 'COMBO BOLSA DE NYLON + KIT 2 BATERIAS + CARREGADOR(PRODUTO EXCLUSIVO DO COMBO BOSCH PAGUE MENOS)',
+               idProduto: 215867,
+               link: "https://www.ressegdistribuidora.com.br/b2c/combo-bolsa-de-nylon-kit-2-baterias-carregadorproduto-exclusivo-do-combo-bosch-pague-menos/215867/produto/",
+               imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15100.jpg"
+           };
+       
+       var adcCarrinho = function(listaAdc){            
+           return new Promise(function(resolve, reject){        
+               listaAdc.map(function(obj,i){
+                   $.ajax({
+                       "url": "https://www.ressegdistribuidora.com.br/b2c/loja/Pedido.do?action=addItens&idLoja=2033&idPrds="+obj.idProduto+"&qtdPrds=1",
+                       "method": "POST",
+                       "headers": {
+                           "Accept": "*/*",
+                           "Referer": obj.link,
+                       },
+                       "success":function(response){
+                           console.log("Sucesso item ", i+1);
+                           if(i == (listaAdc.length - 1)){
+                               resolve('Todos os '+listaAdc.length+' itens salvos.');
+                           }
+                       },
+                       "error":function(response){
+                           console.log("Error item ", i+1);
+                           if(i == (listaAdc.length - 1)){
+                               reject('Erro ao salvar '+listaAdc.length+' itens.');
+                           }
+                       }
+                   });
+               });
+           });
+       };
+       var verificaSelecionados = function () {
+           var prd1 = $('#produtos-1').find('.btn-produto.selecionado').data();
+           var prd2 = $('#produtos-2').find('.btn-produto.selecionado').data();
+       
+           if (prd1 != undefined && prd2 != undefined) {
+               $('.btn-proximo-passo').prop('disabled', false);
+           } else {
+               $('.btn-proximo-passo').prop('disabled', true);
+           }
+       };
+       var verificarEstoque = function (link) {
+           return new Promise(function (resolve, reject) {
+               $.get(link, function (res) {
+                   console.log('Verificou estoque!');
+                   var resp1 = res.indexOf('bxBtnComprar') != -1;
+                   var resp2 = res.indexOf('btnAddCarrinho') != -1;
+                   (resp1 == true || resp2 == true) ? resolve(true) : resolve(false);
+               });
+           });
+       };
+       var limpaSelecionado = function (local) {
+           if (local == '#produtos-1') {
+               $('#selecionados').find('.produto-1-selecionado').text('').append('<span class="aviso-selecionados">Escolha o primeiro produto</span>');
+           } else if (local == '#produtos-2') {
+               $('#selecionados').find('.produto-2-selecionado').text('').append('<span class="aviso-selecionados">Escolha o segundo produto</span>');
+           }
+           if (($('#selecionados').find('.produto-1-selecionado').html() == '' || $('#selecionados').find('.produto-1-selecionado').html() == '<span class="aviso-selecionados">Escolha o primeiro produto</span>') && ($('#selecionados').find('.produto-2-selecionado').html() == '' || $('#selecionados').find('.produto-2-selecionado').html() == '<span class="aviso-selecionados">Escolha o segundo produto</span>')) {
+               $('#selecionados').css({ 'right': '-180px' });
+               $('#selecionados').hide('fast');
+               $('#selecionados').find('.produto-1-selecionado').text('');
+               $('#selecionados').find('.produto-2-selecionado').text('');
+           }
+       };
+       var adcSelecionado = function (local, imagem) {
+           if (local == '#produtos-1') {
+               $('#selecionados').find('.produto-1-selecionado').text('').append('<img src="' + imagem + '" style="width: 100%;" />');
+               $('#selecionados').find('.produto-2-selecionado').append('<span class="aviso-selecionados">Escolha o segundo produto</span>');
+           } else if (local == '#produtos-2') {
+               $('#selecionados').find('.produto-2-selecionado').text('').append('<img src="' + imagem + '" style="width: 100%;" />');
+           }
+       };
+       var montaPrds = function (lista) {
+           lista.map(function (obj) {
+               verificarEstoque(obj.linkPrd).then(function (res) {
+                   var linha = corpoBtnPrd;
+                   var temEstoque = res;
+                   linha = linha.replace(/{LINK_PRODUTO}/g, obj.linkPrd)
+                       .replace(/{ESGOTADO}/g, (temEstoque) ? '' : 'prd-esgotado')
+                       .replace(/{ID_PRODUTO}/g, obj.idPrd)
+                       .replace(/{IMAGEM_PRODUTO}/g, obj.imagemPrd);
+       
+                   $('#produtos-1').prepend(linha);
+                   $('#produtos-2').prepend(linha);
+               });
+           });
+       };
+       
+       var montaPrdsDev = function(lista){
+           lista.map(function(obj){
+               var linha = corpoBtnPrd;
+               linha = linha.replace(/{LINK_PRODUTO}/g,obj.linkPrd)
+                           .replace(/{ESGOTADO}/g,'')
+                           .replace(/{ID_PRODUTO}/g,obj.idPrd)
+                           .replace(/{IMAGEM_PRODUTO}/g,obj.imagemPrd);
+       
+               $('#produtos-1').prepend(linha);
+               $('#produtos-2').prepend(linha);
+           });
+       };
+       montaPrds(listPrd);
+       
+       $(document).on('click', '.btn-produto', function () {
+           var local = '#' + $(this).closest('.produtos-list').attr('id');
+           if ($(this).hasClass('selecionado')) {
+               $(this).toggleClass('selecionado');
+               limpaSelecionado(local);
+               verificaSelecionados();
+           } else if (!$(this).hasClass('prd-esgotado')) {
+               if ($(local).find('.selecionado').length) {
+                   console.log('Ja existe marcado no local');
+               } else {
+                   $(this).toggleClass('selecionado');
+                   verificaSelecionados();
+                   adcSelecionado(local, $(this).find('img').attr('src'));
+                   $('#selecionados').show('fast');
+                   $('#selecionados').css({ 'right': '0' });
+                   if (local == '#produtos-1') {
+                       setTimeout(function () {
+                           $('.btn-prod-2').attr({
+                               'data-toggle': 'collapse',
+                               'data-target': '#produtos-2'
+                           });
+                           $('.btn-prod-1').click();
+                           ($('.btn-prod-2').hasClass('collapsed')) ? $('.btn-prod-2').click() : '';
+                       }, 500);
+                   } else if (local == '#produtos-2') {
+                       setTimeout(function () {
+                           $('.btn-prod-2').click();
+                       }, 500);
+                   }
+               }
+           }
+       })
+       
+       $('.titulo-escolha').on('click', function () {
+           $(this).toggleClass('open');
+       });
+       
+       $('.btn-proximo-passo').on('click', function () {
+           var prd1 = $('#produtos-1').find('.btn-produto.selecionado').data();
+           var prd2 = $('#produtos-2').find('.btn-produto.selecionado').data();
+       
+           if (prd1 != undefined && prd2 != undefined) {
+               var modalConfirmarProdutos = corpoModalPrds;
+               var imgPrd1 = $('#produtos-1').find('.btn-produto.selecionado').find('img').attr('src');
+               var imgPrd2 = $('#produtos-2').find('.btn-produto.selecionado').find('img').attr('src');
+               modalConfirmarProdutos = modalConfirmarProdutos.replace(/{IMG_PRD_SELECIONADO_1}/g, imgPrd1)
+                   .replace(/{IMG_PRD_SELECIONADO_2}/g, imgPrd2);
+               $('body').prepend(modalConfirmarProdutos);
+       
+               setTimeout(function () {
+                   $('#modal-selecionados').fadeIn('fast');
+               }, 500);
+           } else {
+               listEscolhas = [];
+           }
+       });
+       
+       $(document).on('click', '.btn-proximo-passo-modal', function () {
+           var prd1 = $('#produtos-1').find('.btn-produto.selecionado').data();
+           var prd2 = $('#produtos-2').find('.btn-produto.selecionado').data();
+            $('.close-modal-escolhidos').fadeOut('fast');
+            $(this).text('').text('Aguarde...');
+           if (prd1 != undefined && prd2 != undefined) {
+               listEscolhas.push(prd1);
+               listEscolhas.push(prd2);
+               listEscolhas.push(objBolsaBrinde);
+               adcCarrinho(listEscolhas).then(function(res){console.log(res)}).then(function(){
+                   setTimeout(function(){
+                       location.href = "https://www.ressegdistribuidora.com.br/b2c/loja/Pedido.do?action=view&idLoja=2033";
+                   },1500);
+               });
+           }
+       });
+       
+       $(document).on('click', '.close-modal-escolhidos', function () {
+           $('#modal-selecionados').fadeOut('fast');
+           setTimeout(function () {
+               $('body').find('#modal-selecionados').remove();
+           }, 500);
+       });
+    </script>	
+ </section>
