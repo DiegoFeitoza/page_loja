@@ -337,7 +337,34 @@
        }
        .header-pg .middle-header{
        margin-bottom: 15px;
+       position: relative;
        }
+       .header-pg .middle-header .plus-verm {
+            position: absolute;
+            left: 40%;
+            top: 30%;
+            width: 120px;
+            z-index: 5;
+        }
+        @media only screen and (max-width:670px){
+            .header-pg .middle-header .plus-verm {
+                left: 42%;
+                top: 30%;
+                width: 120px;
+            }
+        }
+        @media only screen and (max-width:670px){
+            .header-pg .middle-header .plus-verm {
+                width: 90px;
+            }
+        }
+        @media only screen and (max-width:560px){
+            .header-pg .middle-header .plus-verm {
+                left: 40%;
+                top: 28%;
+                width: 60px;
+            }
+        }
        .header-pg .middle-header .box-combo{
        }
        .header-pg .middle-header .box-combo img, .header-pg .middle-header img{
@@ -489,6 +516,11 @@
                 </div>
              </div>
              <div class="middle-header">
+                 <div class="hidden-lg hidden-md">
+                     <span class="plus-verm">
+                         <img src="https://s1.lojistaonline.com.br/lojas/2033/combo-plus-verm.png" alt="Plus Vermelho">
+                     </span>
+                 </div>
                 <div>
                    <div class="row">
                       <div class="col-md-3 col-xs-6 box-combo">
