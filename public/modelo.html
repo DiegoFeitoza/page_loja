@@ -475,6 +475,61 @@
        #iframe-video {
        margin-bottom: 15px;
        }	
+
+       .aviso-btn-modal{
+        font-weight: bold;
+        font-size: 1.2em;
+        margin: 10px 5px;
+        display: block;
+        position: relative;
+        clear: both;
+       }
+       @media only screen and (max-width:1025px){
+        .aviso-btn-modal{
+            margin: 5px 5px;
+        }   
+       }
+       @media only screen and (max-width:770px){
+        .aviso-btn-modal{
+            font-size: 1em;
+            margin: 10px 5px;
+        }
+       }
+       .aviso-btn-prosseguir{
+        font-weight: bold;
+        font-size: 1.2em;
+       }
+       @media only screen and (max-width:770px){
+        .aviso-btn-prosseguir{
+            font-size: 1em;
+        }
+       }
+       .aviso-bottom-imgs{
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        font-weight: 200;
+        clear: both;
+        position: relative;
+        display: block;
+        margin: 10px 70px 10px;
+       }
+       @media only screen and (max-width:1030px){
+        .aviso-bottom-imgs {
+            margin: 20px 20px;
+            font-size: 1.8em;
+        }
+       }
+       @media only screen and (max-width:770px){
+        .aviso-bottom-imgs {
+            margin: 15px 10px;
+            font-size: 1.3em;
+        }
+       }
+       @media only screen and (max-width:640px){
+        .aviso-bottom-imgs {
+            margin: 15px 10px;
+        }
+       }
     </style>
     <div class="height-mobile hidden-lg" style="height: 100px;"></div>
     <div class="container">
@@ -542,6 +597,7 @@
                 <div>
                    <div class="row">
                       <div class="col-md-12 text-center">
+                          <span class="aviso-bottom-imgs">Escolha duas ferramentas para compor seu combo, a bolsa, as 2 baterias e o carregador serão adicionados automaticamente em seu pedido no carrinho de compras. Aproveite!</span>
                          <span class="principal-bottom">Tudo isso com pre&ccedil;o fixo e at&eacute; 50% de desconto</span>
                          <p class="secundario-bottom">
                             Agora que voc&ecirc; j&aacute; sabe como montar o seu Combo, veja abaixo os produtos participantes:
@@ -592,6 +648,7 @@
        </div>
        <div class="row">
           <div class="col-md-12">
+            <span class="aviso-btn-prosseguir">*Prossiga para o carrinho de compras através do botão abaixo e revise os produtos e a quantidade desejada no carrinho!</span>
              <div class="wrap-btn-bottom">
                 <button class="btn-proximo-passo" disabled="disabled">Prosseguir</button>
              </div>
@@ -624,7 +681,7 @@
                <div class="body-modal-selecionados">
                    <div class="aviso-body-modal">
                        <span class="aviso-bold">
-                           Confirma a escolha dos produtos abaixo?
+                           Confirma a escolha dos produtos abaixo?                           
                        </span>
                    </div>
                    <div class="produto1">
@@ -637,6 +694,7 @@
                </div>
                <div class="footer-modal-selecionados">
                    <div class="wrap-ctn-confirma-md">
+                       <span class="aviso-btn-modal">*Prossiga para o carrinho de compras através do botão abaixo e revise os produtos e a quantidade desejada no carrinho!</span>
                        <button class="btn-proximo-passo-modal" >Confirmar produtos</button>
                    </div>
                </div>
@@ -727,7 +785,7 @@
                            "Referer": obj.link,
                        },
                        "success":function(response){
-                           console.log("Sucesso item ", i+1);
+                        //    console.log("Sucesso item ", i+1);/
                            if(i == (listaAdc.length - 1)){
                                resolve('Todos os '+listaAdc.length+' itens salvos.');
                            }
@@ -755,7 +813,7 @@
        var verificarEstoque = function (link) {
            return new Promise(function (resolve, reject) {
                $.get(link, function (res) {
-                   console.log('Verificou estoque!');
+                //    console.log('Verificou estoque!');
                    var resp1 = res.indexOf('bxBtnComprar') != -1;
                    var resp2 = res.indexOf('btnAddCarrinho') != -1;
                    (resp1 == true || resp2 == true) ? resolve(true) : resolve(false);
@@ -778,7 +836,9 @@
        var adcSelecionado = function (local, imagem) {
            if (local == '#produtos-1') {
                $('#selecionados').find('.produto-1-selecionado').text('').append('<img src="' + imagem + '" style="width: 100%;" />');
-               $('#selecionados').find('.produto-2-selecionado').append('<span class="aviso-selecionados">Escolha o segundo produto</span>');
+               if($('#selecionados').find('.produto-2-selecionado').html().indexOf('<img src="') == -1){
+                    $('#selecionados').find('.produto-2-selecionado').text('').append('<span class="aviso-selecionados">Escolha o segundo produto</span>');
+               }
            } else if (local == '#produtos-2') {
                $('#selecionados').find('.produto-2-selecionado').text('').append('<img src="' + imagem + '" style="width: 100%;" />');
            }
@@ -815,13 +875,38 @@
        
        $(document).on('click', '.btn-produto', function () {
            var local = '#' + $(this).closest('.produtos-list').attr('id');
+           var $objMomento = $(this);
            if ($(this).hasClass('selecionado')) {
                $(this).toggleClass('selecionado');
                limpaSelecionado(local);
                verificaSelecionados();
            } else if (!$(this).hasClass('prd-esgotado')) {
                if ($(local).find('.selecionado').length) {
-                   console.log('Ja existe marcado no local');
+                //    console.log('Ja existe marcado no local.');
+                   var $objSelecionado = $(local).find('.selecionado');
+                   $objSelecionado.toggleClass('selecionado');
+                   limpaSelecionado(local);                   
+                   verificaSelecionados();
+                   $objMomento.toggleClass('selecionado');                
+                   verificaSelecionados();
+                   adcSelecionado(local, $objMomento.find('img').attr('src'));
+                   $('#selecionados').show('fast');
+                   $('#selecionados').css({ 'right': '0' });
+                   if (local == '#produtos-1') {
+                       setTimeout(function () {
+                           $('.btn-prod-2').attr({
+                               'data-toggle': 'collapse',
+                               'data-target': '#produtos-2'
+                           });
+                           $('.btn-prod-1').click();
+                           ($('.btn-prod-2').hasClass('collapsed')) ? $('.btn-prod-2').click() : '';
+                       }, 500);
+                   } else if (local == '#produtos-2') {
+                       setTimeout(function () {
+                           $('.btn-prod-2').click();
+                       }, 500);
+                   }
+                //    console.log('Produto susbtituido!');
                } else {
                    $(this).toggleClass('selecionado');
                    verificaSelecionados();
@@ -879,7 +964,7 @@
                listEscolhas.push(prd1);
                listEscolhas.push(prd2);
                listEscolhas.push(objBolsaBrinde);
-               adcCarrinho(listEscolhas).then(function(res){console.log(res)}).then(function(){
+               adcCarrinho(listEscolhas).then(function(res){/*console.log(res)*/}).then(function(){
                    setTimeout(function(){
                        location.href = "https://www.ressegdistribuidora.com.br/b2c/loja/Pedido.do?action=view&idLoja=2033";
                    },1500);
