@@ -288,14 +288,16 @@
        font-weight: bold;
        }
        .produto1,
-       .produto2 {
-       width: 50%;
+       .produto2,
+       .produto3 {
+       width: 33%;
        position: relative;
        float: left;
        padding: 15px;
        }
        .produto1 img,
-       .produto2 img {
+       .produto2 img,
+       .produto3 img {
        width: 100%;
        }
        .footer-modal-selecionados {
@@ -383,7 +385,7 @@
        transform: translateY(-50%);
        width: 65px;
        }
-       .body-modal-selecionados .produto1::before {
+       .body-modal-selecionados .produto1::before, .body-modal-selecionados .produto2::before {
             content: " ";
             background: url(https://s1.lojistaonline.com.br/lojas/2033/combo-plus.png);
             background-repeat: no-repeat;
@@ -400,7 +402,7 @@
         }
 
         @media only screen and (max-width:570px){
-            .body-modal-selecionados .produto1::before {
+            .body-modal-selecionados .produto1::before, .body-modal-selecionados .produto2::before {
                 width: 50px;
                 right: -25px;
             }
@@ -689,6 +691,9 @@
                    </div>
                    <div class="produto2">
                        <img src="{IMG_PRD_SELECIONADO_2}" alt="Imagem produto 2">
+                   </div>
+                   <div class="produto3">
+                       <img src="https://www.ressegdistribuidora.com.br/lojas/2033/img/interno/prd_215867_p_maletin_tool_bag_dyn_v1.png" alt="Bolsa e baterias">
                    </div>
                    <span>&nbsp;</span>
                </div>
