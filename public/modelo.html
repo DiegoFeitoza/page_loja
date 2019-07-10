@@ -779,30 +779,24 @@
                imagemPrd: "https://s1.lojistaonline.com.br/lojas/2033/15100.jpg"
            };
        
-       var adcCarrinho = function(listaAdc){            
+       var adcCarrinho = function(obj,qtdAdd){
+           (qtdAdd == undefined || qtdAdd == null || qtdAdd == 0) ? qtdAdd = 1 : '';         
            return new Promise(function(resolve, reject){        
-               listaAdc.map(function(obj,i){
-                   $.ajax({
-                       "url": "https://www.ressegdistribuidora.com.br/b2c/loja/Pedido.do?action=addItens&idLoja=2033&idPrds="+obj.idProduto+"&qtdPrds=1",
-                       "method": "POST",
-                       "headers": {
-                           "Accept": "*/*",
-                           "Referer": obj.link,
-                       },
-                       "success":function(response){
-                        //    console.log("Sucesso item ", i+1);/
-                           if(i == (listaAdc.length - 1)){
-                               resolve('Todos os '+listaAdc.length+' itens salvos.');
-                           }
-                       },
-                       "error":function(response){
-                           console.log("Error item ", i+1);
-                           if(i == (listaAdc.length - 1)){
-                               reject('Erro ao salvar '+listaAdc.length+' itens.');
-                           }
-                       }
-                   });
-               });
+                $.ajax({
+                    "url": "https://www.ressegdistribuidora.com.br/b2c/loja/Pedido.do?action=addItens&idLoja=2033&idPrds="+obj.idProduto+"&qtdPrds="+qtdAdd,
+                    "method": "POST",
+                    "headers": {
+                        "Accept": "*/*",
+                        "Referer": obj.link,
+                    },
+                    "success":function(response){
+                    //    console.log("Sucesso item ", i+1);/
+                        resolve('item salvo.');
+                    },
+                    "error":function(response){
+                        reject('Erro ao salvar ');
+                    }
+                });
            });
        };
        var verificaSelecionados = function () {
@@ -966,14 +960,33 @@
             $('.close-modal-escolhidos').fadeOut('fast');
             $(this).text('').text('Aguarde...');
            if (prd1 != undefined && prd2 != undefined) {
+               console.log('Prd1: ', prd1);
+               console.log('Prd2: ', prd2);
                listEscolhas.push(prd1);
                listEscolhas.push(prd2);
                listEscolhas.push(objBolsaBrinde);
-               adcCarrinho(listEscolhas).then(function(res){/*console.log(res)*/}).then(function(){
-                   setTimeout(function(){
-                       location.href = "https://www.ressegdistribuidora.com.br/b2c/loja/Pedido.do?action=view&idLoja=2033";
-                   },1500);
-               });
+               if(prd1.idProduto == prd2.idProduto){
+                adcCarrinho(prd1,2).then(function(res){
+                    console.log(res);
+                    adcCarrinho(objBolsaBrinde,1).then(function(res){
+                        console.log('Final: ', res);
+                        setTimeout(function(){
+                            location.href = "https://www.ressegdistribuidora.com.br/b2c/loja/Pedido.do?action=view&idLoja=2033";
+                        },2000);
+                    });
+                });
+               }else{
+                adcCarrinho(prd1,1).then(function(res){
+                    console.log(res);
+                        adcCarrinho(prd2,1).then(function(res){
+                            console.log(res);
+                            adcCarrinho(objBolsaBrinde,1).then(function(){
+                                console.log('Final: ',res);
+                                
+                            });
+                        });
+                });
+               }
            }
        });
        
