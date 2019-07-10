@@ -982,7 +982,9 @@
                             console.log(res);
                             adcCarrinho(objBolsaBrinde,1).then(function(){
                                 console.log('Final: ',res);
-                                
+                                setTimeout(function(){
+                                    location.href = "https://www.ressegdistribuidora.com.br/b2c/loja/Pedido.do?action=view&idLoja=2033";
+                                },2000);
                             });
                         });
                 });
